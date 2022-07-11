@@ -1,0 +1,5 @@
+com/mulesoft/connector/github/internal/GithubmarinaConnection.class
+com/mulesoft/connector/github/internal/GithubmarinaConfiguration.class
+com/mulesoft/connector/github/internal/GithubmarinaExtension.class
+com/mulesoft/connector/github/internal/GithubmarinaConnectionProvider.class
+com/mulesoft/connector/github/internal/GithubmarinaOperations.class
