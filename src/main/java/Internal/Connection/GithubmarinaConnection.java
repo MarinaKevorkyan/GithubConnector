@@ -1,4 +1,4 @@
-package com.mulesoft.connector.github.internal;
+package Internal.Connection;
 
 
 /**

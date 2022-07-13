@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.mulesoft.connector.github.GithubmarinaOperationsTestCase
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.196 s - in com.mulesoft.connector.github.GithubmarinaOperationsTestCase
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.167 s - in com.mulesoft.connector.github.GithubmarinaOperationsTestCase

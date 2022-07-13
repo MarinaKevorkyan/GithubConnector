@@ -13,12 +13,14 @@
         <outputRelativeToContentRoot value="true" />
         <option name="extension.version" value="0.0.1-SNAPSHOT" />
         <processor name="org.mule.runtime.ast.internal.extension.loader.ASTExtensionResourcesGeneratorAnnotationProcessor" />
+        <module name="GithubConnector" />
         <module name="mule4-github-connector" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="GithubConnector" options="-parameters" />
       <module name="mule4-github-connector" options="-parameters" />
     </option>
   </component>

@@ -1,5 +1,6 @@
-package com.mulesoft.connector.github.internal;
+package Internal.Connection.Provider;
 
+import Internal.Connection.GithubmarinaConnection;
 import org.mule.runtime.api.connection.ConnectionException;
 import org.mule.runtime.extension.api.annotation.param.Parameter;
 import org.mule.runtime.extension.api.annotation.param.Optional;

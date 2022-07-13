@@ -1,7 +1,9 @@
-package com.mulesoft.connector.github.internal;
+package Internal.Operations;
 
 import static org.mule.runtime.extension.api.annotation.param.MediaType.ANY;
 
+import Internal.Configuration.GithubmarinaConfiguration;
+import Internal.Connection.GithubmarinaConnection;
 import org.mule.runtime.extension.api.annotation.param.MediaType;
 import org.mule.runtime.extension.api.annotation.param.Config;
 import org.mule.runtime.extension.api.annotation.param.Connection;
@@ -34,6 +36,7 @@ public class GithubmarinaOperations {
   private String buildHelloMessage(String person) {
     return "Hello " + person + "!!!";
   }
+
 
   
 }
