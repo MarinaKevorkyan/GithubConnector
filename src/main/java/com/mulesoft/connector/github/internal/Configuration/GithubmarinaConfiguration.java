@@ -1,7 +1,7 @@
-package Internal.Configuration;
+package com.mulesoft.connector.github.internal.Configuration;
 
-import Internal.Connection.Provider.GithubmarinaConnectionProvider;
-import Internal.Operations.GithubmarinaOperations;
+import com.mulesoft.connector.github.internal.Connection.Provider.GithubmarinaConnectionProvider;
+import com.mulesoft.connector.github.internal.Operations.GithubmarinaOperations;
 import org.mule.runtime.extension.api.annotation.Operations;
 import org.mule.runtime.extension.api.annotation.connectivity.ConnectionProviders;
 import org.mule.runtime.extension.api.annotation.param.Parameter;

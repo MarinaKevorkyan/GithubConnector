@@ -1,6 +1,6 @@
-package Internal.Connection.Provider;
+package com.mulesoft.connector.github.internal.Connection.Provider;
 
-import Internal.Connection.GithubmarinaConnection;
+import com.mulesoft.connector.github.internal.Connection.GithubmarinaConnection;
 import org.mule.runtime.api.connection.ConnectionException;
 import org.mule.runtime.extension.api.annotation.param.Parameter;
 import org.mule.runtime.extension.api.annotation.param.Optional;
@@ -8,10 +8,16 @@ import org.mule.runtime.api.connection.ConnectionValidationResult;
 import org.mule.runtime.api.connection.PoolingConnectionProvider;
 import org.mule.runtime.api.connection.ConnectionProvider;
 import org.mule.runtime.api.connection.CachedConnectionProvider;
+import org.mule.runtime.extension.api.annotation.param.RefName;
 import org.mule.runtime.extension.api.annotation.param.display.DisplayName;
 
+import org.mule.runtime.http.api.HttpService;
+import org.mule.runtime.http.api.client.HttpClient;
+import org.mule.runtime.http.api.client.HttpClientConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.inject.Inject;
 
 
 /**
@@ -29,11 +35,14 @@ public class GithubmarinaConnectionProvider implements PoolingConnectionProvider
 
   private final Logger LOGGER = LoggerFactory.getLogger(GithubmarinaConnectionProvider.class);
 
- /**
-  * A parameter that is always required to be configured.
-  */
+  @RefName
+  private  String configName;
+
   @Parameter
-  private String requiredParameter;
+  private String token;
+
+  @Inject
+  private HttpService httpService;
 
  /**
   * A parameter that is not required to be configured by the user.
@@ -45,7 +54,9 @@ public class GithubmarinaConnectionProvider implements PoolingConnectionProvider
 
   @Override
   public GithubmarinaConnection connect() throws ConnectionException {
-    return new GithubmarinaConnection(requiredParameter + ":" + optionalParameter);
+      HttpClient httpClient = httpService.getClientFactory().create(new HttpClientConfiguration.Builder().setName(configName).build());
+      httpClient.start();
+      return new GithubmarinaConnection(httpClient, token);
   }
 
   @Override

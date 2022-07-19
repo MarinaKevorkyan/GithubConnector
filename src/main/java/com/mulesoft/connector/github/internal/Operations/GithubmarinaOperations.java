@@ -1,12 +1,15 @@
-package Internal.Operations;
+package com.mulesoft.connector.github.internal.Operations;
 
 import static org.mule.runtime.extension.api.annotation.param.MediaType.ANY;
 
-import Internal.Configuration.GithubmarinaConfiguration;
-import Internal.Connection.GithubmarinaConnection;
+import com.mulesoft.connector.github.internal.Configuration.GithubmarinaConfiguration;
+import com.mulesoft.connector.github.internal.Connection.GithubmarinaConnection;
 import org.mule.runtime.extension.api.annotation.param.MediaType;
 import org.mule.runtime.extension.api.annotation.param.Config;
 import org.mule.runtime.extension.api.annotation.param.Connection;
+import org.mule.runtime.http.api.domain.message.request.HttpRequest;
+
+import javax.xml.transform.Result;
 
 
 /**
@@ -37,6 +40,4 @@ public class GithubmarinaOperations {
     return "Hello " + person + "!!!";
   }
 
-
-  
 }
