@@ -39,25 +39,22 @@ Default configuration
 [%header%autowidth.spread]
 |===
 | Name | Type | Description | Default Value | Required
-| Required Parameter a| String |  |  | *x*{nbsp}
+| Token a| String |  |  | *x*{nbsp}
 | Friendly Name a| Number |  |  100 | {nbsp}
 | Reconnection a| <<Reconnection>> |  When the application is deployed, a connectivity test is performed on all connectors. If set to true, deployment will fail if the test doesn't pass after exhausting the associated reconnection strategy |  | {nbsp}
 | Pooling Profile a| <<PoolingProfile>> |  Characteristics of the connection pool |  | {nbsp}
 |===
 
 ==== Associated Operations
-* <<RetrieveInfo>> {nbsp}
+* <<GetUserInfo>> {nbsp}
 
 
 
 == Operations
 
-[[RetrieveInfo]]
-== Retrieve Info
-`<github-marina:retrieve-info>`
-
-
-Example of an operation that uses the configuration and a connection instance to perform some action.
+[[GetUserInfo]]
+== Get User Info
+`<github-marina:get-user-info>`
 
 
 === Parameters
@@ -66,8 +63,11 @@ Example of an operation that uses the configuration and a connection instance to
 |===
 | Name | Type | Description | Default Value | Required
 | Configuration | String | The name of the configuration to use. | | *x*{nbsp}
-| Output Mime Type a| String |  The mime type of the payload that this operation outputs. |  | {nbsp}
+| Username a| String |  |  | *x*{nbsp}
 | Config Ref a| ConfigurationProvider |  The name of the configuration to be used to execute this component |  | *x*{nbsp}
+| Streaming Strategy a| * <<RepeatableInMemoryStream>>
+* <<RepeatableFileStoreStream>>
+* non-repeatable-stream |  Configure if repeatable streams should be used and their behaviour |  | {nbsp}
 | Target Variable a| String |  The name of a variable on which the operation's output will be placed |  | {nbsp}
 | Target Value a| String |  An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable |  #[payload] | {nbsp}
 | Reconnection Strategy a| * <<Reconnect>>
@@ -78,7 +78,8 @@ Example of an operation that uses the configuration and a connection instance to
 
 [%autowidth.spread]
 |===
-| *Type* a| String
+| *Type* a| Binary
+| *Attributes Type* a| Binary
 |===
 
 === For Configurations
@@ -89,35 +90,6 @@ Example of an operation that uses the configuration and a connection instance to
 
 * GITHUB-MARINA:CONNECTIVITY {nbsp}
 * GITHUB-MARINA:RETRY_EXHAUSTED {nbsp}
-
-
-[[SayHi]]
-== Say Hi
-`<github-marina:say-hi>`
-
-
-Example of a simple operation that receives a string parameter and returns a new string message that will be set on the payload.
-
-
-=== Parameters
-
-[%header%autowidth.spread]
-|===
-| Name | Type | Description | Default Value | Required
-| Person a| String |  |  | *x*{nbsp}
-| Output Mime Type a| String |  The mime type of the payload that this operation outputs. |  | {nbsp}
-| Target Variable a| String |  The name of a variable on which the operation's output will be placed |  | {nbsp}
-| Target Value a| String |  An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable |  #[payload] | {nbsp}
-|===
-
-=== Output
-
-[%autowidth.spread]
-|===
-| *Type* a| String
-|===
-
-
 
 
 
@@ -194,5 +166,37 @@ Example of a simple operation that receives a string parameter and returns a new
 ** MINUTES
 ** HOURS
 ** DAYS | A time unit that qualifies the maxIdleTime attribute |  | 
+|======================
+
+[[RepeatableInMemoryStream]]
+=== Repeatable In Memory Stream
+
+[cols=".^20%,.^25%,.^30%,.^15%,.^10%", options="header"]
+|======================
+| Field | Type | Description | Default Value | Required
+| Initial Buffer Size a| Number | This is the amount of memory that will be allocated in order to consume the stream and provide random access to it. If the stream contains more data than can be fit into this buffer, then it will be expanded by according to the bufferSizeIncrement attribute, with an upper limit of maxInMemorySize. |  | 
+| Buffer Size Increment a| Number | This is by how much will be buffer size by expanded if it exceeds its initial size. Setting a value of zero or lower will mean that the buffer should not expand, meaning that a STREAM_MAXIMUM_SIZE_EXCEEDED error will be raised when the buffer gets full. |  | 
+| Max Buffer Size a| Number | This is the maximum amount of memory that will be used. If more than that is used then a STREAM_MAXIMUM_SIZE_EXCEEDED error will be raised. A value lower or equal to zero means no limit. |  | 
+| Buffer Unit a| Enumeration, one of:
+
+** BYTE
+** KB
+** MB
+** GB | The unit in which all these attributes are expressed |  | 
+|======================
+
+[[RepeatableFileStoreStream]]
+=== Repeatable File Store Stream
+
+[cols=".^20%,.^25%,.^30%,.^15%,.^10%", options="header"]
+|======================
+| Field | Type | Description | Default Value | Required
+| In Memory Size a| Number | Defines the maximum memory that the stream should use to keep data in memory. If more than that is consumed then it will start to buffer the content on disk. |  | 
+| Buffer Unit a| Enumeration, one of:
+
+** BYTE
+** KB
+** MB
+** GB | The unit in which maxInMemorySize is expressed |  | 
 |======================
 

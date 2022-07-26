@@ -64,7 +64,7 @@ public class GithubmarinaConnectionProvider implements PoolingConnectionProvider
     try {
       connection.invalidate();
     } catch (Exception e) {
-      LOGGER.error("Error while disconnecting [" + connection.getId() + "]: " + e.getMessage(), e);
+      LOGGER.error("Error while disconnecting" + e.getMessage(), e);
     }
   }
 

@@ -2,8 +2,8 @@
   "extensionModelLoaderDescriptor": {
     "id": "java",
     "attributes": {
-      "type": "com.mulesoft.connector.github.internal.GithubmarinaExtension",
-      "version": "0.0.1-SNAPSHOT"
+      "type": "com.mulesoft.connector.github.internal.Extension.GithubmarinaExtension",
+      "version": "0.0.1-SNAPSHOT-0.0.2"
     }
   },
   "name": "Github-marina",
@@ -21,5 +21,5 @@
     "id": "mule",
     "attributes": {}
   },
-  "minMuleVersion": "4.3.0"
+  "minMuleVersion": "4.2.0"
 }

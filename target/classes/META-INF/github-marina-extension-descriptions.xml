@@ -20,7 +20,7 @@
         <connection name="connection">
             <description><![CDATA[]]></description>
             <parameters>
-                <parameter name="requiredParameter">
+                <parameter name="token">
                     <description><![CDATA[]]></description>
                 </parameter>
                 <parameter name="optionalParameter">
@@ -40,14 +40,17 @@
         <parameters/>
     </extension>
     <operations>
-        <operation name="retrieveInfo">
-            <description><![CDATA[Example of an operation that uses the configuration and a connection instance to perform some action.]]></description>
+        <operation name="getUserInfo">
+            <description><![CDATA[]]></description>
             <parameters>
-                <parameter name="outputMimeType">
-                    <description><![CDATA[The mime type of the payload that this operation outputs.]]></description>
+                <parameter name="username">
+                    <description><![CDATA[]]></description>
                 </parameter>
                 <parameter name="config-ref">
                     <description><![CDATA[The name of the configuration to be used to execute this component]]></description>
+                </parameter>
+                <parameter name="streamingStrategy">
+                    <description><![CDATA[Configure if repeatable streams should be used and their behaviour]]></description>
                 </parameter>
                 <parameter name="target">
                     <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
@@ -57,23 +60,6 @@
                 </parameter>
                 <parameter name="reconnectionStrategy">
                     <description><![CDATA[A retry strategy in case of connectivity errors]]></description>
-                </parameter>
-            </parameters>
-        </operation>
-        <operation name="sayHi">
-            <description><![CDATA[Example of a simple operation that receives a string parameter and returns a new string message that will be set on the payload.]]></description>
-            <parameters>
-                <parameter name="person">
-                    <description><![CDATA[]]></description>
-                </parameter>
-                <parameter name="outputMimeType">
-                    <description><![CDATA[The mime type of the payload that this operation outputs.]]></description>
-                </parameter>
-                <parameter name="target">
-                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
-                </parameter>
-                <parameter name="targetValue">
-                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
                 </parameter>
             </parameters>
         </operation>

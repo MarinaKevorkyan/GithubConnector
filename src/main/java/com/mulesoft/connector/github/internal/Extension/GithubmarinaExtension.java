@@ -1,8 +1,10 @@
 package com.mulesoft.connector.github.internal.Extension;
 
 import com.mulesoft.connector.github.internal.Configuration.GithubmarinaConfiguration;
+import com.mulesoft.connector.github.internal.Operations.GetAUserOperation;
 import org.mule.runtime.extension.api.annotation.Extension;
 import org.mule.runtime.extension.api.annotation.Configurations;
+import org.mule.runtime.extension.api.annotation.Operations;
 import org.mule.runtime.extension.api.annotation.dsl.xml.Xml;
 
 

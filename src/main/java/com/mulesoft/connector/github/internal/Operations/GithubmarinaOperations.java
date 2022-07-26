@@ -7,9 +7,11 @@ import com.mulesoft.connector.github.internal.Connection.GithubmarinaConnection;
 import org.mule.runtime.extension.api.annotation.param.MediaType;
 import org.mule.runtime.extension.api.annotation.param.Config;
 import org.mule.runtime.extension.api.annotation.param.Connection;
-import org.mule.runtime.http.api.domain.message.request.HttpRequest;
+import org.mule.runtime.extension.api.runtime.operation.Result;
 
-import javax.xml.transform.Result;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.concurrent.TimeoutException;
 
 
 /**
@@ -22,7 +24,7 @@ public class GithubmarinaOperations {
    */
   @MediaType(value = ANY, strict = false)
   public String retrieveInfo(@Config GithubmarinaConfiguration configuration, @Connection GithubmarinaConnection connection){
-    return "Using Configuration [" + configuration.getConfigId() + "] with Connection id [" + connection.getId() + "]";
+    return "Using Configuration [" + configuration.getConfigId() + "] with Connection id";
   }
 
   /**
