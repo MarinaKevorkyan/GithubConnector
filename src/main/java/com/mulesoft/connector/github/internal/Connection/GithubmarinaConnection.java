@@ -11,9 +11,8 @@ public final class GithubmarinaConnection {
 
   private HttpClient httpClient;
   private String token;
-
   private GithubMarinaService service;
-
+  //private GithubMarinaGeneral utils;
   public GithubMarinaService getService() {
     return service;
   }
@@ -27,10 +26,11 @@ public final class GithubmarinaConnection {
   }
 
   public GithubmarinaConnection(HttpClient httpClient, String token) {
-    //this.id = id;
     this.httpClient = httpClient;
     this.token = token;
     this.service = new GithubMarinaService(this);
+    //this.utils = new GithubMarinaGeneral(this);
+
   }
 
   public void invalidate() {

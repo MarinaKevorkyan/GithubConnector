@@ -40,6 +40,47 @@
         <parameters/>
     </extension>
     <operations>
+        <operation name="createAnIssue">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="username">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="reponame">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="title">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="body">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="milestone">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="labels">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="assignees">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="config-ref">
+                    <description><![CDATA[The name of the configuration to be used to execute this component]]></description>
+                </parameter>
+                <parameter name="streamingStrategy">
+                    <description><![CDATA[Configure if repeatable streams should be used and their behaviour]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+                <parameter name="reconnectionStrategy">
+                    <description><![CDATA[A retry strategy in case of connectivity errors]]></description>
+                </parameter>
+            </parameters>
+        </operation>
         <operation name="getUserInfo">
             <description><![CDATA[]]></description>
             <parameters>

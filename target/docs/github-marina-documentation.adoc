@@ -46,11 +46,58 @@ Default configuration
 |===
 
 ==== Associated Operations
+* <<CreateAnIssue>> {nbsp}
 * <<GetUserInfo>> {nbsp}
 
 
 
 == Operations
+
+[[CreateAnIssue]]
+== Create An Issue
+`<github-marina:create-an-issue>`
+
+
+=== Parameters
+
+[%header%autowidth.spread]
+|===
+| Name | Type | Description | Default Value | Required
+| Configuration | String | The name of the configuration to use. | | *x*{nbsp}
+| Username a| String |  |  | *x*{nbsp}
+| Reponame a| String |  |  | *x*{nbsp}
+| Title a| String |  |  | *x*{nbsp}
+| Body a| String |  |  | {nbsp}
+| Milestone a| String |  |  | {nbsp}
+| Labels a| Array of String |  |  | {nbsp}
+| Assignees a| Array of String |  |  | {nbsp}
+| Config Ref a| ConfigurationProvider |  The name of the configuration to be used to execute this component |  | *x*{nbsp}
+| Streaming Strategy a| * <<RepeatableInMemoryStream>>
+* <<RepeatableFileStoreStream>>
+* non-repeatable-stream |  Configure if repeatable streams should be used and their behaviour |  | {nbsp}
+| Target Variable a| String |  The name of a variable on which the operation's output will be placed |  | {nbsp}
+| Target Value a| String |  An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable |  #[payload] | {nbsp}
+| Reconnection Strategy a| * <<Reconnect>>
+* <<ReconnectForever>> |  A retry strategy in case of connectivity errors |  | {nbsp}
+|===
+
+=== Output
+
+[%autowidth.spread]
+|===
+| *Type* a| Binary
+| *Attributes Type* a| Binary
+|===
+
+=== For Configurations
+
+* <<Config>> {nbsp}
+
+=== Throws
+
+* GITHUB-MARINA:CONNECTIVITY {nbsp}
+* GITHUB-MARINA:RETRY_EXHAUSTED {nbsp}
+
 
 [[GetUserInfo]]
 == Get User Info

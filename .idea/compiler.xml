@@ -13,8 +13,15 @@
         <outputRelativeToContentRoot value="true" />
         <option name="extension.version" value="0.0.1-SNAPSHOT" />
         <processor name="org.mule.runtime.ast.internal.extension.loader.ASTExtensionResourcesGeneratorAnnotationProcessor" />
-        <module name="GithubConnector" />
         <module name="mule4-github-connector" />
+      </profile>
+      <profile name="Annotation profile for GithubConnector" enabled="true">
+        <sourceOutputDir name="target/classes/META-INF" />
+        <sourceTestOutputDir name="target/generated-sources/apt-test" />
+        <outputRelativeToContentRoot value="true" />
+        <option name="extension.version" value="0.0.1-SNAPSHOT-0.0.14" />
+        <processor name="org.mule.runtime.ast.internal.extension.loader.ASTExtensionResourcesGeneratorAnnotationProcessor" />
+        <module name="GithubConnector" />
       </profile>
     </annotationProcessing>
   </component>
