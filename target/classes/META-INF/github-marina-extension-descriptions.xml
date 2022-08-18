@@ -23,9 +23,6 @@
                 <parameter name="token">
                     <description><![CDATA[]]></description>
                 </parameter>
-                <parameter name="optionalParameter">
-                    <description><![CDATA[]]></description>
-                </parameter>
                 <parameter name="reconnection">
                     <description><![CDATA[When the application is deployed, a connectivity test is performed on all connectors. If set to true, deployment will fail if the test doesn't pass after exhausting the associated reconnection strategy]]></description>
                 </parameter>
@@ -85,6 +82,32 @@
             <description><![CDATA[]]></description>
             <parameters>
                 <parameter name="username">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="config-ref">
+                    <description><![CDATA[The name of the configuration to be used to execute this component]]></description>
+                </parameter>
+                <parameter name="streamingStrategy">
+                    <description><![CDATA[Configure if repeatable streams should be used and their behaviour]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+                <parameter name="reconnectionStrategy">
+                    <description><![CDATA[A retry strategy in case of connectivity errors]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="listRepoIssues">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="username">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="reponame">
                     <description><![CDATA[]]></description>
                 </parameter>
                 <parameter name="config-ref">

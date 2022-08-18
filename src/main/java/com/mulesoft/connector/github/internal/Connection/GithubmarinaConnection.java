@@ -1,6 +1,7 @@
 package com.mulesoft.connector.github.internal.Connection;
 
 
+import com.mulesoft.connector.github.internal.Client.HttpClientGithub;
 import com.mulesoft.connector.github.internal.Service.GithubMarinaService;
 import org.mule.runtime.http.api.client.HttpClient;
 
@@ -9,32 +10,19 @@ import org.mule.runtime.http.api.client.HttpClient;
  */
 public final class GithubmarinaConnection {
 
-  private HttpClient httpClient;
-  private String token;
   private GithubMarinaService service;
-  //private GithubMarinaGeneral utils;
+  private HttpClientGithub httpClientGithub;
   public GithubMarinaService getService() {
     return service;
   }
 
-  public HttpClient getHttpClient() {
-    return httpClient;
-  }
-
-  public String getToken() {
-    return token;
-  }
-
   public GithubmarinaConnection(HttpClient httpClient, String token) {
-    this.httpClient = httpClient;
-    this.token = token;
-    this.service = new GithubMarinaService(this);
-    //this.utils = new GithubMarinaGeneral(this);
-
+    this.httpClientGithub = new HttpClientGithub(httpClient, token);
+    this.service = new GithubMarinaService(this.httpClientGithub);
   }
 
   public void invalidate() {
-    this.httpClient.stop();
+    this.httpClientGithub.getHttpClient().stop();
     // do something to invalidate this connection!
   }
 }

@@ -24,7 +24,7 @@ Default configuration
 |Name | String | The name for this configuration. Connectors reference the configuration with this name. | | *x*{nbsp}
 | Connection a| <<Config_Connection, Connection>>
  | The connection types that can be provided to this configuration. | | *x*{nbsp}
-| Config Id a| String |  |  | *x*{nbsp}
+| Config Id a| String |  |  | {nbsp}
 | Name a| String |  The identifier of this element used to reference it in other components |  | *x*{nbsp}
 | Expiration Policy a| <<ExpirationPolicy>> |  Configures the minimum amount of time that a dynamic configuration instance can remain idle before the runtime considers it eligible for expiration. This does not mean that the platform will expire the instance at the exact moment that it becomes eligible. The runtime will actually purge the instances when it sees it fit. |  | {nbsp}
 |===
@@ -40,7 +40,6 @@ Default configuration
 |===
 | Name | Type | Description | Default Value | Required
 | Token a| String |  |  | *x*{nbsp}
-| Friendly Name a| Number |  |  100 | {nbsp}
 | Reconnection a| <<Reconnection>> |  When the application is deployed, a connectivity test is performed on all connectors. If set to true, deployment will fail if the test doesn't pass after exhausting the associated reconnection strategy |  | {nbsp}
 | Pooling Profile a| <<PoolingProfile>> |  Characteristics of the connection pool |  | {nbsp}
 |===
@@ -48,6 +47,7 @@ Default configuration
 ==== Associated Operations
 * <<CreateAnIssue>> {nbsp}
 * <<GetUserInfo>> {nbsp}
+* <<ListRepoIssues>> {nbsp}
 
 
 
@@ -111,6 +111,47 @@ Default configuration
 | Name | Type | Description | Default Value | Required
 | Configuration | String | The name of the configuration to use. | | *x*{nbsp}
 | Username a| String |  |  | *x*{nbsp}
+| Config Ref a| ConfigurationProvider |  The name of the configuration to be used to execute this component |  | *x*{nbsp}
+| Streaming Strategy a| * <<RepeatableInMemoryStream>>
+* <<RepeatableFileStoreStream>>
+* non-repeatable-stream |  Configure if repeatable streams should be used and their behaviour |  | {nbsp}
+| Target Variable a| String |  The name of a variable on which the operation's output will be placed |  | {nbsp}
+| Target Value a| String |  An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable |  #[payload] | {nbsp}
+| Reconnection Strategy a| * <<Reconnect>>
+* <<ReconnectForever>> |  A retry strategy in case of connectivity errors |  | {nbsp}
+|===
+
+=== Output
+
+[%autowidth.spread]
+|===
+| *Type* a| Binary
+| *Attributes Type* a| Binary
+|===
+
+=== For Configurations
+
+* <<Config>> {nbsp}
+
+=== Throws
+
+* GITHUB-MARINA:CONNECTIVITY {nbsp}
+* GITHUB-MARINA:RETRY_EXHAUSTED {nbsp}
+
+
+[[ListRepoIssues]]
+== List Repo Issues
+`<github-marina:list-repo-issues>`
+
+
+=== Parameters
+
+[%header%autowidth.spread]
+|===
+| Name | Type | Description | Default Value | Required
+| Configuration | String | The name of the configuration to use. | | *x*{nbsp}
+| Username a| String |  |  | *x*{nbsp}
+| Reponame a| String |  |  | *x*{nbsp}
 | Config Ref a| ConfigurationProvider |  The name of the configuration to be used to execute this component |  | *x*{nbsp}
 | Streaming Strategy a| * <<RepeatableInMemoryStream>>
 * <<RepeatableFileStoreStream>>

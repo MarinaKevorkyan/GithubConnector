@@ -1,9 +1,10 @@
 package com.mulesoft.connector.github;
 
+import org.junit.Test;
+import org.mule.functional.junit4.MuleArtifactFunctionalTestCase;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import org.mule.functional.junit4.MuleArtifactFunctionalTestCase;
-import org.junit.Test;
 
 public class GithubmarinaOperationsTestCase extends MuleArtifactFunctionalTestCase {
 
@@ -32,5 +33,15 @@ public class GithubmarinaOperationsTestCase extends MuleArtifactFunctionalTestCa
                                       .getPayload()
                                       .getValue());
     assertThat(payloadValue, is("Using Configuration [configId] with Connection id [aValue:100]"));
+  }
+
+  @Test
+  public void testConvertion() throws Exception{
+//    String token = "";
+//    GithubMarinaService serviceM = new GithubMarinaService(new HttpClientGithub(new HttpClient(), token));
+//    GithubmarinaConnection connection = new GithubmarinaConnection(serviceM);
+//    SourceService service = new SourceService(null);
+//    GetAUserOperation op = new GetAUserOperation();
+//    service.convertInputStreamToIssue(op.getUserInfo(null, ));
   }
 }

@@ -1,17 +1,12 @@
 package com.mulesoft.connector.github.internal.Operations;
 
-import static org.mule.runtime.extension.api.annotation.param.MediaType.ANY;
-
 import com.mulesoft.connector.github.internal.Configuration.GithubmarinaConfiguration;
 import com.mulesoft.connector.github.internal.Connection.GithubmarinaConnection;
-import org.mule.runtime.extension.api.annotation.param.MediaType;
 import org.mule.runtime.extension.api.annotation.param.Config;
 import org.mule.runtime.extension.api.annotation.param.Connection;
-import org.mule.runtime.extension.api.runtime.operation.Result;
+import org.mule.runtime.extension.api.annotation.param.MediaType;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.concurrent.TimeoutException;
+import static org.mule.runtime.extension.api.annotation.param.MediaType.ANY;
 
 
 /**
@@ -24,7 +19,7 @@ public class GithubmarinaOperations {
    */
   @MediaType(value = ANY, strict = false)
   public String retrieveInfo(@Config GithubmarinaConfiguration configuration, @Connection GithubmarinaConnection connection){
-    return "Using Configuration [" + configuration.getConfigId() + "] with Connection id";
+    return "Using Configuration [] with Connection id";
   }
 
   /**

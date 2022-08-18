@@ -37,6 +37,7 @@ public class StatusCodes {
     }
 
     public HttpResponse manageStatusCodes (int statusCode){
+
         return null;
     }
 }

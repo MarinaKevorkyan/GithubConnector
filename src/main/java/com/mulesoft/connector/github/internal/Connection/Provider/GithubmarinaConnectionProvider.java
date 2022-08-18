@@ -1,16 +1,9 @@
 package com.mulesoft.connector.github.internal.Connection.Provider;
 
 import com.mulesoft.connector.github.internal.Connection.GithubmarinaConnection;
-import org.mule.runtime.api.connection.ConnectionException;
+import org.mule.runtime.api.connection.*;
 import org.mule.runtime.extension.api.annotation.param.Parameter;
-import org.mule.runtime.extension.api.annotation.param.Optional;
-import org.mule.runtime.api.connection.ConnectionValidationResult;
-import org.mule.runtime.api.connection.PoolingConnectionProvider;
-import org.mule.runtime.api.connection.ConnectionProvider;
-import org.mule.runtime.api.connection.CachedConnectionProvider;
 import org.mule.runtime.extension.api.annotation.param.RefName;
-import org.mule.runtime.extension.api.annotation.param.display.DisplayName;
-
 import org.mule.runtime.http.api.HttpService;
 import org.mule.runtime.http.api.client.HttpClient;
 import org.mule.runtime.http.api.client.HttpClientConfiguration;
@@ -36,7 +29,7 @@ public class GithubmarinaConnectionProvider implements PoolingConnectionProvider
   private final Logger LOGGER = LoggerFactory.getLogger(GithubmarinaConnectionProvider.class);
 
   @RefName
-  private  String configName;
+  private String configName;
 
   @Parameter
   private String token;
@@ -44,13 +37,13 @@ public class GithubmarinaConnectionProvider implements PoolingConnectionProvider
   @Inject
   private HttpService httpService;
 
- /**
-  * A parameter that is not required to be configured by the user.
-  */
-  @DisplayName("Friendly Name")
-  @Parameter
-  @Optional(defaultValue = "100")
-  private int optionalParameter;
+// /**
+//  * A parameter that is not required to be configured by the user.
+//  */
+//  @DisplayName("Friendly Name")
+//  @Parameter
+//  @Optional(defaultValue = "100")
+//  private int optionalParameter;
 
   @Override
   public GithubmarinaConnection connect() throws ConnectionException {
