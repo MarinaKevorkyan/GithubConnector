@@ -1,14 +1,14 @@
 {
   "name": "Github-marina",
   "description": "This is the main class of an extension, is the entry point from which configurations, connection providers, operations and sources are going to be declared.",
-  "version": "0.0.1-SNAPSHOT-0.0.39",
+  "version": "0.0.1-SNAPSHOT-0.0.55",
   "vendor": "Mulesoft",
   "category": "COMMUNITY",
   "xmlDsl": {
     "prefix": "github-marina",
     "namespace": "http://www.mulesoft.org/schema/mule/github-marina",
     "schemaLocation": "http://www.mulesoft.org/schema/mule/github-marina/current/mule-github-marina.xsd",
-    "schemaVersion": "0.0.1-SNAPSHOT-0.0.39",
+    "schemaVersion": "0.0.1-SNAPSHOT-0.0.55",
     "xsdFileName": "mule-github-marina.xsd"
   },
   "resources": [],
@@ -16,7 +16,55 @@
   "privilegedPackages": [],
   "privilegedArtifacts": [],
   "externalLibraries": [],
-  "importedTypes": [],
+  "importedTypes": [
+    {
+      "format": "java",
+      "type": "Object",
+      "annotations": {
+        "typeId": "org.mule.runtime.api.store.ObjectStore",
+        "extensibleType": {},
+        "typeAlias": {
+          "value": "ObjectStore"
+        },
+        "classInformation": {
+          "classname": "org.mule.runtime.api.store.ObjectStore",
+          "hasDefaultConstructor": false,
+          "isInterface": true,
+          "isInstantiable": false,
+          "isAbstract": true,
+          "isFinal": false,
+          "implementedInterfaces": [],
+          "parent": "",
+          "genericTypes": [],
+          "isMap": false
+        }
+      },
+      "fields": []
+    },
+    {
+      "format": "java",
+      "type": "Object",
+      "annotations": {
+        "typeId": "org.mule.runtime.core.api.source.scheduler.Scheduler",
+        "classInformation": {
+          "classname": "org.mule.runtime.core.api.source.scheduler.Scheduler",
+          "hasDefaultConstructor": false,
+          "isInterface": true,
+          "isInstantiable": false,
+          "isAbstract": true,
+          "isFinal": false,
+          "implementedInterfaces": [],
+          "parent": "",
+          "genericTypes": [],
+          "isMap": false
+        },
+        "typeAlias": {
+          "value": "scheduling-strategy"
+        }
+      },
+      "fields": []
+    }
+  ],
   "configurations": [
     {
       "stereotype": {
@@ -1820,6 +1868,36 @@
                 {
                   "type": {
                     "format": "java",
+                    "type": "String"
+                  },
+                  "hasDynamicType": false,
+                  "required": true,
+                  "isConfigOverride": false,
+                  "isComponentId": false,
+                  "expressionSupport": "SUPPORTED",
+                  "role": "BEHAVIOUR",
+                  "dslConfiguration": {
+                    "allowsInlineDefinition": false,
+                    "allowsReferences": false,
+                    "allowTopLevelDefinition": false
+                  },
+                  "layoutModel": {
+                    "password": false,
+                    "text": false,
+                    "query": false,
+                    "order": 3
+                  },
+                  "allowedStereotypeModels": [],
+                  "name": "since",
+                  "displayModel": {
+                    "displayName": "Since"
+                  },
+                  "description": "",
+                  "modelProperties": {}
+                },
+                {
+                  "type": {
+                    "format": "java",
                     "type": "Object",
                     "annotations": {
                       "typeId": "org.mule.runtime.extension.api.runtime.config.ConfigurationProvider"
@@ -1841,7 +1919,7 @@
                     "password": false,
                     "text": false,
                     "query": false,
-                    "order": 4
+                    "order": 5
                   },
                   "allowedStereotypeModels": [
                     {
@@ -2026,7 +2104,7 @@
                     "password": false,
                     "text": false,
                     "query": false,
-                    "order": 3,
+                    "order": 4,
                     "tabName": "Advanced"
                   },
                   "allowedStereotypeModels": [],
@@ -2080,7 +2158,7 @@
                     "password": false,
                     "text": false,
                     "query": false,
-                    "order": 5,
+                    "order": 6,
                     "tabName": "Advanced"
                   },
                   "allowedStereotypeModels": [],
@@ -2112,7 +2190,7 @@
                     "password": false,
                     "text": false,
                     "query": false,
-                    "order": 6,
+                    "order": 7,
                     "tabName": "Advanced"
                   },
                   "allowedStereotypeModels": [],
@@ -2290,7 +2368,7 @@
                     "password": false,
                     "text": false,
                     "query": false,
-                    "order": 7,
+                    "order": 8,
                     "tabName": "Advanced"
                   },
                   "allowedStereotypeModels": [],
@@ -2817,13 +2895,618 @@
             }
           ],
           "name": "connection",
-          "description": "",
+          "description": "This class (as it\u0027s name implies) provides connection instances and the funcionality to disconnect and validate those connections. All connection related parameters (values required in order to create a connection) must be declared in the connection providers. This particular example is a PoolingConnectionProvider which declares that connections resolved by this provider will be pooled and reused. There are other implementations like CachedConnectionProvider which lazily creates and caches connections or simply ConnectionProvider if you want a new connection each time something requires one.",
           "modelProperties": {}
         }
       ],
-      "messageSources": [],
+      "messageSources": [
+        {
+          "hasResponse": true,
+          "runsOnPrimaryNodeOnly": false,
+          "output": {
+            "type": {
+              "format": "java",
+              "type": "@ref:com.mulesoft.connector.github.internal.Domain.Issue"
+            },
+            "hasDynamicType": false,
+            "description": "",
+            "modelProperties": {}
+          },
+          "outputAttributes": {
+            "type": {
+              "format": "java",
+              "type": "Any",
+              "annotations": {
+                "classInformation": {
+                  "classname": "java.io.InputStream",
+                  "hasDefaultConstructor": true,
+                  "isInterface": false,
+                  "isInstantiable": false,
+                  "isAbstract": true,
+                  "isFinal": false,
+                  "implementedInterfaces": [
+                    "java.io.Closeable"
+                  ],
+                  "parent": "",
+                  "genericTypes": [],
+                  "isMap": false
+                }
+              }
+            },
+            "hasDynamicType": false,
+            "description": "",
+            "modelProperties": {}
+          },
+          "transactional": false,
+          "requiresConnection": true,
+          "supportsStreaming": false,
+          "notifications": [],
+          "nestedComponents": [],
+          "errors": [],
+          "stereotype": {
+            "type": "GITHUB_SOURCE",
+            "namespace": "GITHUB-MARINA",
+            "parent": {
+              "type": "SOURCE",
+              "namespace": "GITHUB-MARINA",
+              "parent": {
+                "type": "SOURCE",
+                "namespace": "MULE"
+              }
+            }
+          },
+          "parameterGroupModels": [
+            {
+              "parameters": [
+                {
+                  "type": {
+                    "format": "java",
+                    "type": "String"
+                  },
+                  "hasDynamicType": false,
+                  "required": true,
+                  "isConfigOverride": false,
+                  "isComponentId": false,
+                  "expressionSupport": "NOT_SUPPORTED",
+                  "role": "BEHAVIOUR",
+                  "dslConfiguration": {
+                    "allowsInlineDefinition": false,
+                    "allowsReferences": false,
+                    "allowTopLevelDefinition": false
+                  },
+                  "layoutModel": {
+                    "password": false,
+                    "text": false,
+                    "query": false,
+                    "order": 1
+                  },
+                  "allowedStereotypeModels": [],
+                  "name": "owner",
+                  "description": "",
+                  "modelProperties": {}
+                },
+                {
+                  "type": {
+                    "format": "java",
+                    "type": "String"
+                  },
+                  "hasDynamicType": false,
+                  "required": true,
+                  "isConfigOverride": false,
+                  "isComponentId": false,
+                  "expressionSupport": "NOT_SUPPORTED",
+                  "role": "BEHAVIOUR",
+                  "dslConfiguration": {
+                    "allowsInlineDefinition": false,
+                    "allowsReferences": false,
+                    "allowTopLevelDefinition": false
+                  },
+                  "layoutModel": {
+                    "password": false,
+                    "text": false,
+                    "query": false,
+                    "order": 2
+                  },
+                  "allowedStereotypeModels": [],
+                  "name": "repoName",
+                  "description": "",
+                  "modelProperties": {}
+                },
+                {
+                  "type": {
+                    "format": "java",
+                    "type": "String"
+                  },
+                  "hasDynamicType": false,
+                  "required": true,
+                  "isConfigOverride": false,
+                  "isComponentId": false,
+                  "expressionSupport": "NOT_SUPPORTED",
+                  "role": "BEHAVIOUR",
+                  "dslConfiguration": {
+                    "allowsInlineDefinition": false,
+                    "allowsReferences": false,
+                    "allowTopLevelDefinition": false
+                  },
+                  "layoutModel": {
+                    "password": false,
+                    "text": false,
+                    "query": false,
+                    "order": 3
+                  },
+                  "allowedStereotypeModels": [],
+                  "name": "since",
+                  "description": "",
+                  "modelProperties": {}
+                },
+                {
+                  "type": {
+                    "format": "java",
+                    "type": "Object",
+                    "annotations": {
+                      "typeId": "org.mule.runtime.extension.api.runtime.config.ConfigurationProvider"
+                    },
+                    "fields": []
+                  },
+                  "hasDynamicType": false,
+                  "required": true,
+                  "isConfigOverride": false,
+                  "isComponentId": false,
+                  "expressionSupport": "NOT_SUPPORTED",
+                  "role": "BEHAVIOUR",
+                  "dslConfiguration": {
+                    "allowsInlineDefinition": false,
+                    "allowsReferences": true,
+                    "allowTopLevelDefinition": false
+                  },
+                  "layoutModel": {
+                    "password": false,
+                    "text": false,
+                    "query": false,
+                    "order": 5
+                  },
+                  "allowedStereotypeModels": [
+                    {
+                      "type": "CONFIG",
+                      "namespace": "GITHUB-MARINA",
+                      "parent": {
+                        "type": "MODULE_CONFIG",
+                        "namespace": "MULE"
+                      }
+                    }
+                  ],
+                  "name": "config-ref",
+                  "description": "The name of the configuration to be used to execute this component",
+                  "modelProperties": {}
+                },
+                {
+                  "type": {
+                    "format": "java",
+                    "type": "Boolean"
+                  },
+                  "hasDynamicType": false,
+                  "required": false,
+                  "isConfigOverride": false,
+                  "isComponentId": false,
+                  "expressionSupport": "NOT_SUPPORTED",
+                  "defaultValue": false,
+                  "role": "BEHAVIOUR",
+                  "dslConfiguration": {
+                    "allowsInlineDefinition": false,
+                    "allowsReferences": false,
+                    "allowTopLevelDefinition": false
+                  },
+                  "layoutModel": {
+                    "password": false,
+                    "text": false,
+                    "query": false,
+                    "order": 8,
+                    "tabName": "Advanced"
+                  },
+                  "allowedStereotypeModels": [],
+                  "name": "primaryNodeOnly",
+                  "description": "Whether this source should only be executed on the primary node when runnning in Cluster",
+                  "modelProperties": {}
+                },
+                {
+                  "type": {
+                    "format": "java",
+                    "type": "@ref:org.mule.runtime.core.api.source.scheduler.Scheduler"
+                  },
+                  "hasDynamicType": false,
+                  "required": true,
+                  "isConfigOverride": false,
+                  "isComponentId": false,
+                  "expressionSupport": "NOT_SUPPORTED",
+                  "role": "BEHAVIOUR",
+                  "dslConfiguration": {
+                    "allowsInlineDefinition": true,
+                    "allowsReferences": false,
+                    "allowTopLevelDefinition": false
+                  },
+                  "layoutModel": {
+                    "password": false,
+                    "text": false,
+                    "query": false,
+                    "order": 4
+                  },
+                  "allowedStereotypeModels": [],
+                  "name": "schedulingStrategy",
+                  "description": "Configures the scheduler that triggers the polling",
+                  "modelProperties": {
+                    "org.mule.runtime.extension.api.property.InfrastructureParameterModelProperty": {
+                      "sequence": 10
+                    },
+                    "org.mule.runtime.extension.api.property.QNameModelProperty": {
+                      "value": {
+                        "namespaceURI": "http://www.mulesoft.org/schema/mule/core",
+                        "localPart": "scheduling-strategy",
+                        "prefix": "mule"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": {
+                    "format": "java",
+                    "type": "Object",
+                    "annotations": {
+                      "typeId": "RedeliveryPolicy"
+                    },
+                    "fields": [
+                      {
+                        "key": {
+                          "name": "maxRedeliveryCount"
+                        },
+                        "model": {
+                          "type": "Number",
+                          "annotations": {
+                            "int": {},
+                            "default": "5"
+                          }
+                        },
+                        "annotations": {
+                          "description": {
+                            "value": "The maximum number of times a message can be redelivered and processed unsuccessfully before triggering process-failed-message"
+                          }
+                        }
+                      },
+                      {
+                        "key": {
+                          "name": "messageDigestAlgorithm"
+                        },
+                        "model": {
+                          "type": "String"
+                        },
+                        "annotations": {
+                          "description": {
+                            "value": "The secure hashing algorithm to use. If not set, the default is SHA-256."
+                          }
+                        }
+                      },
+                      {
+                        "key": {
+                          "name": "MessageIdentifier"
+                        },
+                        "model": {
+                          "type": "Object",
+                          "annotations": {
+                            "typeId": "RedeliveryPolicyMessageIdentifier",
+                            "exclusiveOptionals": {
+                              "exclusiveParameterNames": [
+                                "useSecureHash",
+                                "idExpression"
+                              ],
+                              "isOneRequired": true
+                            }
+                          },
+                          "fields": [
+                            {
+                              "key": {
+                                "name": "useSecureHash"
+                              },
+                              "model": {
+                                "type": "Boolean",
+                                "annotations": {
+                                  "default": "true"
+                                }
+                              },
+                              "annotations": {
+                                "description": {
+                                  "value": "Whether to use a secure hash algorithm to identify a redelivered message"
+                                }
+                              }
+                            },
+                            {
+                              "key": {
+                                "name": "idExpression"
+                              },
+                              "model": {
+                                "type": "String"
+                              },
+                              "annotations": {
+                                "description": {
+                                  "value": "Defines one or more expressions to use to determine when a message has been redelivered. This property may only be set if useSecureHash is false."
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "annotations": {
+                          "flattened": {},
+                          "description": {
+                            "value": "Defines which strategy is used to identify the messages."
+                          }
+                        }
+                      },
+                      {
+                        "key": {
+                          "name": "objectStore"
+                        },
+                        "model": {
+                          "type": "@ref:org.mule.runtime.api.store.ObjectStore"
+                        },
+                        "annotations": {
+                          "stereotype": {
+                            "allowedStereotypes": [
+                              {
+                                "type": "OBJECT_STORE",
+                                "namespace": "OS"
+                              }
+                            ]
+                          },
+                          "description": {
+                            "value": "The object store where the redelivery counter for each message is going to be stored."
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "hasDynamicType": false,
+                  "required": false,
+                  "isConfigOverride": false,
+                  "isComponentId": false,
+                  "expressionSupport": "NOT_SUPPORTED",
+                  "role": "BEHAVIOUR",
+                  "dslConfiguration": {
+                    "allowsInlineDefinition": true,
+                    "allowsReferences": false,
+                    "allowTopLevelDefinition": false
+                  },
+                  "layoutModel": {
+                    "password": false,
+                    "text": false,
+                    "query": false,
+                    "order": 6,
+                    "tabName": "Redelivery"
+                  },
+                  "allowedStereotypeModels": [],
+                  "name": "redeliveryPolicy",
+                  "description": "Defines a policy for processing the redelivery of the same message",
+                  "modelProperties": {
+                    "org.mule.runtime.extension.api.property.QNameModelProperty": {
+                      "value": {
+                        "namespaceURI": "http://www.mulesoft.org/schema/mule/core",
+                        "localPart": "abstract-redelivery-policy",
+                        "prefix": "mule"
+                      }
+                    },
+                    "org.mule.runtime.extension.api.property.InfrastructureParameterModelProperty": {
+                      "sequence": 1
+                    }
+                  }
+                }
+              ],
+              "exclusiveParametersModels": [],
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false,
+                "order": 1
+              },
+              "showInDsl": false,
+              "name": "General",
+              "description": "",
+              "modelProperties": {}
+            },
+            {
+              "parameters": [
+                {
+                  "type": {
+                    "format": "java",
+                    "type": "Union",
+                    "annotations": {
+                      "typeId": "ReconnectionStrategy"
+                    },
+                    "of": [
+                      {
+                        "type": "Object",
+                        "annotations": {
+                          "typeId": "reconnect"
+                        },
+                        "fields": [
+                          {
+                            "key": {
+                              "name": "frequency"
+                            },
+                            "model": {
+                              "type": "Number",
+                              "annotations": {
+                                "int": {},
+                                "classInformation": {
+                                  "classname": "java.lang.Long",
+                                  "hasDefaultConstructor": false,
+                                  "isInterface": false,
+                                  "isInstantiable": false,
+                                  "isAbstract": false,
+                                  "isFinal": true,
+                                  "implementedInterfaces": [
+                                    "java.lang.Comparable"
+                                  ],
+                                  "parent": "java.lang.Number",
+                                  "genericTypes": [],
+                                  "isMap": false
+                                },
+                                "default": "2000"
+                              }
+                            },
+                            "annotations": {
+                              "description": {
+                                "value": "How often (in ms) to reconnect"
+                              }
+                            }
+                          },
+                          {
+                            "key": {
+                              "name": "blocking"
+                            },
+                            "model": {
+                              "type": "Boolean",
+                              "annotations": {
+                                "default": "true"
+                              }
+                            },
+                            "annotations": {
+                              "description": {
+                                "value": "If false, the reconnection strategy will run in a separate, non-blocking thread"
+                              }
+                            }
+                          },
+                          {
+                            "key": {
+                              "name": "count"
+                            },
+                            "model": {
+                              "type": "Number",
+                              "annotations": {
+                                "int": {},
+                                "default": "2"
+                              }
+                            },
+                            "annotations": {
+                              "description": {
+                                "value": "How many reconnection attempts to make"
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "Object",
+                        "annotations": {
+                          "typeId": "reconnect-forever"
+                        },
+                        "fields": [
+                          {
+                            "key": {
+                              "name": "frequency"
+                            },
+                            "model": {
+                              "type": "Number",
+                              "annotations": {
+                                "int": {},
+                                "classInformation": {
+                                  "classname": "java.lang.Long",
+                                  "hasDefaultConstructor": false,
+                                  "isInterface": false,
+                                  "isInstantiable": false,
+                                  "isAbstract": false,
+                                  "isFinal": true,
+                                  "implementedInterfaces": [
+                                    "java.lang.Comparable"
+                                  ],
+                                  "parent": "java.lang.Number",
+                                  "genericTypes": [],
+                                  "isMap": false
+                                },
+                                "default": "2000"
+                              }
+                            },
+                            "annotations": {
+                              "description": {
+                                "value": "How often (in ms) to reconnect"
+                              }
+                            }
+                          },
+                          {
+                            "key": {
+                              "name": "blocking"
+                            },
+                            "model": {
+                              "type": "Boolean",
+                              "annotations": {
+                                "default": "true"
+                              }
+                            },
+                            "annotations": {
+                              "description": {
+                                "value": "If false, the reconnection strategy will run in a separate, non-blocking thread"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "hasDynamicType": false,
+                  "required": false,
+                  "isConfigOverride": false,
+                  "isComponentId": false,
+                  "expressionSupport": "NOT_SUPPORTED",
+                  "role": "BEHAVIOUR",
+                  "dslConfiguration": {
+                    "allowsInlineDefinition": true,
+                    "allowsReferences": false,
+                    "allowTopLevelDefinition": false
+                  },
+                  "layoutModel": {
+                    "password": false,
+                    "text": false,
+                    "query": false,
+                    "order": 7,
+                    "tabName": "Advanced"
+                  },
+                  "allowedStereotypeModels": [],
+                  "name": "reconnectionStrategy",
+                  "description": "A retry strategy in case of connectivity errors",
+                  "modelProperties": {
+                    "org.mule.runtime.extension.api.property.QNameModelProperty": {
+                      "value": {
+                        "namespaceURI": "http://www.mulesoft.org/schema/mule/core",
+                        "localPart": "abstract-reconnection-strategy",
+                        "prefix": "mule"
+                      }
+                    },
+                    "org.mule.runtime.extension.api.property.InfrastructureParameterModelProperty": {
+                      "sequence": 3
+                    }
+                  }
+                }
+              ],
+              "exclusiveParametersModels": [],
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false,
+                "order": 2
+              },
+              "showInDsl": false,
+              "name": "Connection",
+              "description": "",
+              "modelProperties": {}
+            }
+          ],
+          "name": "githubSource",
+          "displayModel": {
+            "displayName": "Issue listener"
+          },
+          "description": "",
+          "modelProperties": {},
+          "kind": "source"
+        }
+      ],
       "name": "config",
-      "description": "Default configuration",
+      "description": "This class represents an extension configuration, values set in this class are commonly used across multiple operations since they represent something core from the extension.",
       "modelProperties": {}
     }
   ],
@@ -2860,5 +3543,1049 @@
     }
   ],
   "modelProperties": {},
-  "types": []
+  "types": [
+    {
+      "format": "java",
+      "type": "Object",
+      "annotations": {
+        "typeId": "com.mulesoft.connector.github.internal.Domain.Issue",
+        "classInformation": {
+          "classname": "com.mulesoft.connector.github.internal.Domain.Issue",
+          "hasDefaultConstructor": false,
+          "isInterface": false,
+          "isInstantiable": false,
+          "isAbstract": false,
+          "isFinal": false,
+          "implementedInterfaces": [],
+          "parent": "",
+          "genericTypes": [],
+          "isMap": false
+        },
+        "typeAlias": {
+          "value": "Issue"
+        }
+      },
+      "fields": [
+        {
+          "key": {
+            "name": "active_lock_reason"
+          },
+          "model": {
+            "type": "Object",
+            "annotations": {
+              "typeId": "java.lang.Object",
+              "classInformation": {
+                "classname": "java.lang.Object",
+                "hasDefaultConstructor": true,
+                "isInterface": false,
+                "isInstantiable": true,
+                "isAbstract": false,
+                "isFinal": false,
+                "implementedInterfaces": [],
+                "parent": "",
+                "genericTypes": [],
+                "isMap": false
+              },
+              "typeAlias": {
+                "value": "Object"
+              }
+            },
+            "fields": []
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "assignee"
+          },
+          "model": {
+            "type": "Object",
+            "annotations": {
+              "typeId": "java.lang.Object",
+              "classInformation": {
+                "classname": "java.lang.Object",
+                "hasDefaultConstructor": true,
+                "isInterface": false,
+                "isInstantiable": true,
+                "isAbstract": false,
+                "isFinal": false,
+                "implementedInterfaces": [],
+                "parent": "",
+                "genericTypes": [],
+                "isMap": false
+              },
+              "typeAlias": {
+                "value": "Object"
+              }
+            },
+            "fields": []
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "assignees"
+          },
+          "model": {
+            "type": "Array",
+            "annotations": {
+              "classInformation": {
+                "classname": "java.util.ArrayList",
+                "hasDefaultConstructor": true,
+                "isInterface": false,
+                "isInstantiable": true,
+                "isAbstract": false,
+                "isFinal": false,
+                "implementedInterfaces": [
+                  "java.util.List",
+                  "java.util.RandomAccess",
+                  "java.lang.Cloneable",
+                  "java.io.Serializable"
+                ],
+                "parent": "java.util.AbstractList",
+                "genericTypes": [
+                  "java.lang.Object"
+                ],
+                "isMap": false
+              }
+            },
+            "item": {
+              "type": "Object",
+              "annotations": {
+                "typeId": "java.lang.Object",
+                "classInformation": {
+                  "classname": "java.lang.Object",
+                  "hasDefaultConstructor": true,
+                  "isInterface": false,
+                  "isInstantiable": true,
+                  "isAbstract": false,
+                  "isFinal": false,
+                  "implementedInterfaces": [],
+                  "parent": "",
+                  "genericTypes": [],
+                  "isMap": false
+                },
+                "typeAlias": {
+                  "value": "Object"
+                }
+              },
+              "fields": []
+            }
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "author_association"
+          },
+          "model": {
+            "type": "String"
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "body"
+          },
+          "model": {
+            "type": "String"
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "closed_at"
+          },
+          "model": {
+            "type": "String"
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "comments"
+          },
+          "model": {
+            "type": "Number",
+            "annotations": {
+              "classInformation": {
+                "classname": "int",
+                "hasDefaultConstructor": false,
+                "isInterface": false,
+                "isInstantiable": false,
+                "isAbstract": true,
+                "isFinal": true,
+                "implementedInterfaces": [],
+                "parent": "",
+                "genericTypes": [],
+                "isMap": false
+              },
+              "int": {}
+            }
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "comments_url"
+          },
+          "model": {
+            "type": "String"
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "created_at"
+          },
+          "model": {
+            "type": "String"
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "events_url"
+          },
+          "model": {
+            "type": "String"
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "html_url"
+          },
+          "model": {
+            "type": "String"
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "id"
+          },
+          "model": {
+            "type": "Number",
+            "annotations": {
+              "classInformation": {
+                "classname": "int",
+                "hasDefaultConstructor": false,
+                "isInterface": false,
+                "isInstantiable": false,
+                "isAbstract": true,
+                "isFinal": true,
+                "implementedInterfaces": [],
+                "parent": "",
+                "genericTypes": [],
+                "isMap": false
+              },
+              "int": {}
+            }
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "labels"
+          },
+          "model": {
+            "type": "Array",
+            "annotations": {
+              "classInformation": {
+                "classname": "java.util.ArrayList",
+                "hasDefaultConstructor": true,
+                "isInterface": false,
+                "isInstantiable": true,
+                "isAbstract": false,
+                "isFinal": false,
+                "implementedInterfaces": [
+                  "java.util.List",
+                  "java.util.RandomAccess",
+                  "java.lang.Cloneable",
+                  "java.io.Serializable"
+                ],
+                "parent": "java.util.AbstractList",
+                "genericTypes": [
+                  "java.lang.Object"
+                ],
+                "isMap": false
+              }
+            },
+            "item": {
+              "type": "Object",
+              "annotations": {
+                "typeId": "java.lang.Object",
+                "classInformation": {
+                  "classname": "java.lang.Object",
+                  "hasDefaultConstructor": true,
+                  "isInterface": false,
+                  "isInstantiable": true,
+                  "isAbstract": false,
+                  "isFinal": false,
+                  "implementedInterfaces": [],
+                  "parent": "",
+                  "genericTypes": [],
+                  "isMap": false
+                },
+                "typeAlias": {
+                  "value": "Object"
+                }
+              },
+              "fields": []
+            }
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "labels_url"
+          },
+          "model": {
+            "type": "String"
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "locked"
+          },
+          "model": {
+            "type": "Boolean",
+            "annotations": {
+              "typeId": "boolean"
+            }
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "milestone"
+          },
+          "model": {
+            "type": "Object",
+            "annotations": {
+              "typeId": "java.lang.Object",
+              "classInformation": {
+                "classname": "java.lang.Object",
+                "hasDefaultConstructor": true,
+                "isInterface": false,
+                "isInstantiable": true,
+                "isAbstract": false,
+                "isFinal": false,
+                "implementedInterfaces": [],
+                "parent": "",
+                "genericTypes": [],
+                "isMap": false
+              },
+              "typeAlias": {
+                "value": "Object"
+              }
+            },
+            "fields": []
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "node_id"
+          },
+          "model": {
+            "type": "String"
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "number"
+          },
+          "model": {
+            "type": "Number",
+            "annotations": {
+              "classInformation": {
+                "classname": "int",
+                "hasDefaultConstructor": false,
+                "isInterface": false,
+                "isInstantiable": false,
+                "isAbstract": true,
+                "isFinal": true,
+                "implementedInterfaces": [],
+                "parent": "",
+                "genericTypes": [],
+                "isMap": false
+              },
+              "int": {}
+            }
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "performed_via_github_app"
+          },
+          "model": {
+            "type": "Object",
+            "annotations": {
+              "typeId": "java.lang.Object",
+              "classInformation": {
+                "classname": "java.lang.Object",
+                "hasDefaultConstructor": true,
+                "isInterface": false,
+                "isInstantiable": true,
+                "isAbstract": false,
+                "isFinal": false,
+                "implementedInterfaces": [],
+                "parent": "",
+                "genericTypes": [],
+                "isMap": false
+              },
+              "typeAlias": {
+                "value": "Object"
+              }
+            },
+            "fields": []
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "reactions"
+          },
+          "model": {
+            "type": "Object",
+            "annotations": {
+              "typeId": "com.mulesoft.connector.github.internal.Domain.Reactions",
+              "classInformation": {
+                "classname": "com.mulesoft.connector.github.internal.Domain.Reactions",
+                "hasDefaultConstructor": false,
+                "isInterface": false,
+                "isInstantiable": false,
+                "isAbstract": false,
+                "isFinal": false,
+                "implementedInterfaces": [],
+                "parent": "",
+                "genericTypes": [],
+                "isMap": false
+              },
+              "typeAlias": {
+                "value": "Reactions"
+              }
+            },
+            "fields": [
+              {
+                "key": {
+                  "name": "confused"
+                },
+                "model": {
+                  "type": "Number",
+                  "annotations": {
+                    "classInformation": {
+                      "classname": "int",
+                      "hasDefaultConstructor": false,
+                      "isInterface": false,
+                      "isInstantiable": false,
+                      "isAbstract": true,
+                      "isFinal": true,
+                      "implementedInterfaces": [],
+                      "parent": "",
+                      "genericTypes": [],
+                      "isMap": false
+                    },
+                    "int": {}
+                  }
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "eyes"
+                },
+                "model": {
+                  "type": "Number",
+                  "annotations": {
+                    "classInformation": {
+                      "classname": "int",
+                      "hasDefaultConstructor": false,
+                      "isInterface": false,
+                      "isInstantiable": false,
+                      "isAbstract": true,
+                      "isFinal": true,
+                      "implementedInterfaces": [],
+                      "parent": "",
+                      "genericTypes": [],
+                      "isMap": false
+                    },
+                    "int": {}
+                  }
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "heart"
+                },
+                "model": {
+                  "type": "Number",
+                  "annotations": {
+                    "classInformation": {
+                      "classname": "int",
+                      "hasDefaultConstructor": false,
+                      "isInterface": false,
+                      "isInstantiable": false,
+                      "isAbstract": true,
+                      "isFinal": true,
+                      "implementedInterfaces": [],
+                      "parent": "",
+                      "genericTypes": [],
+                      "isMap": false
+                    },
+                    "int": {}
+                  }
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "hooray"
+                },
+                "model": {
+                  "type": "Number",
+                  "annotations": {
+                    "classInformation": {
+                      "classname": "int",
+                      "hasDefaultConstructor": false,
+                      "isInterface": false,
+                      "isInstantiable": false,
+                      "isAbstract": true,
+                      "isFinal": true,
+                      "implementedInterfaces": [],
+                      "parent": "",
+                      "genericTypes": [],
+                      "isMap": false
+                    },
+                    "int": {}
+                  }
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "laugh"
+                },
+                "model": {
+                  "type": "Number",
+                  "annotations": {
+                    "classInformation": {
+                      "classname": "int",
+                      "hasDefaultConstructor": false,
+                      "isInterface": false,
+                      "isInstantiable": false,
+                      "isAbstract": true,
+                      "isFinal": true,
+                      "implementedInterfaces": [],
+                      "parent": "",
+                      "genericTypes": [],
+                      "isMap": false
+                    },
+                    "int": {}
+                  }
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "minusOne"
+                },
+                "model": {
+                  "type": "Number",
+                  "annotations": {
+                    "classInformation": {
+                      "classname": "int",
+                      "hasDefaultConstructor": false,
+                      "isInterface": false,
+                      "isInstantiable": false,
+                      "isAbstract": true,
+                      "isFinal": true,
+                      "implementedInterfaces": [],
+                      "parent": "",
+                      "genericTypes": [],
+                      "isMap": false
+                    },
+                    "int": {}
+                  }
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "plusOne"
+                },
+                "model": {
+                  "type": "Number",
+                  "annotations": {
+                    "classInformation": {
+                      "classname": "int",
+                      "hasDefaultConstructor": false,
+                      "isInterface": false,
+                      "isInstantiable": false,
+                      "isAbstract": true,
+                      "isFinal": true,
+                      "implementedInterfaces": [],
+                      "parent": "",
+                      "genericTypes": [],
+                      "isMap": false
+                    },
+                    "int": {}
+                  }
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "rocket"
+                },
+                "model": {
+                  "type": "Number",
+                  "annotations": {
+                    "classInformation": {
+                      "classname": "int",
+                      "hasDefaultConstructor": false,
+                      "isInterface": false,
+                      "isInstantiable": false,
+                      "isAbstract": true,
+                      "isFinal": true,
+                      "implementedInterfaces": [],
+                      "parent": "",
+                      "genericTypes": [],
+                      "isMap": false
+                    },
+                    "int": {}
+                  }
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "total_count"
+                },
+                "model": {
+                  "type": "Number",
+                  "annotations": {
+                    "classInformation": {
+                      "classname": "int",
+                      "hasDefaultConstructor": false,
+                      "isInterface": false,
+                      "isInstantiable": false,
+                      "isAbstract": true,
+                      "isFinal": true,
+                      "implementedInterfaces": [],
+                      "parent": "",
+                      "genericTypes": [],
+                      "isMap": false
+                    },
+                    "int": {}
+                  }
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "url"
+                },
+                "model": {
+                  "type": "String"
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              }
+            ]
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "repository_url"
+          },
+          "model": {
+            "type": "String"
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "state"
+          },
+          "model": {
+            "type": "String"
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "state_reason"
+          },
+          "model": {
+            "type": "String"
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "timeline_url"
+          },
+          "model": {
+            "type": "String"
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "title"
+          },
+          "model": {
+            "type": "String"
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "updated_at"
+          },
+          "model": {
+            "type": "String"
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "url"
+          },
+          "model": {
+            "type": "String"
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        },
+        {
+          "key": {
+            "name": "user"
+          },
+          "model": {
+            "type": "Object",
+            "annotations": {
+              "typeId": "com.mulesoft.connector.github.internal.Domain.User",
+              "classInformation": {
+                "classname": "com.mulesoft.connector.github.internal.Domain.User",
+                "hasDefaultConstructor": false,
+                "isInterface": false,
+                "isInstantiable": false,
+                "isAbstract": false,
+                "isFinal": false,
+                "implementedInterfaces": [],
+                "parent": "",
+                "genericTypes": [],
+                "isMap": false
+              },
+              "typeAlias": {
+                "value": "User"
+              }
+            },
+            "fields": [
+              {
+                "key": {
+                  "name": "avatar_url"
+                },
+                "model": {
+                  "type": "String"
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "events_url"
+                },
+                "model": {
+                  "type": "String"
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "followers_url"
+                },
+                "model": {
+                  "type": "String"
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "following_url"
+                },
+                "model": {
+                  "type": "String"
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "gists_url"
+                },
+                "model": {
+                  "type": "String"
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "gravatar_id"
+                },
+                "model": {
+                  "type": "String"
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "html_url"
+                },
+                "model": {
+                  "type": "String"
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "id"
+                },
+                "model": {
+                  "type": "Number",
+                  "annotations": {
+                    "classInformation": {
+                      "classname": "int",
+                      "hasDefaultConstructor": false,
+                      "isInterface": false,
+                      "isInstantiable": false,
+                      "isAbstract": true,
+                      "isFinal": true,
+                      "implementedInterfaces": [],
+                      "parent": "",
+                      "genericTypes": [],
+                      "isMap": false
+                    },
+                    "int": {}
+                  }
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "login"
+                },
+                "model": {
+                  "type": "String"
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "node_id"
+                },
+                "model": {
+                  "type": "String"
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "organizations_url"
+                },
+                "model": {
+                  "type": "String"
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "received_events_url"
+                },
+                "model": {
+                  "type": "String"
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "repos_url"
+                },
+                "model": {
+                  "type": "String"
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "site_admin"
+                },
+                "model": {
+                  "type": "Boolean",
+                  "annotations": {
+                    "typeId": "boolean"
+                  }
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "starred_url"
+                },
+                "model": {
+                  "type": "String"
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "subscriptions_url"
+                },
+                "model": {
+                  "type": "String"
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "type"
+                },
+                "model": {
+                  "type": "String"
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              },
+              {
+                "key": {
+                  "name": "url"
+                },
+                "model": {
+                  "type": "String"
+                },
+                "annotations": {
+                  "visibility": "READ_ONLY"
+                }
+              }
+            ]
+          },
+          "annotations": {
+            "visibility": "READ_ONLY"
+          }
+        }
+      ]
+    }
+  ]
 }

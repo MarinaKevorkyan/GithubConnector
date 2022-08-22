@@ -2,7 +2,6 @@ package com.mulesoft.connector.github.internal.Operations;
 
 import com.mulesoft.connector.github.internal.Connection.GithubmarinaConnection;
 import com.mulesoft.connector.github.internal.Converters.ResultConverter;
-import com.mulesoft.connector.github.internal.Service.SourceService;
 import org.mule.runtime.extension.api.annotation.Alias;
 import org.mule.runtime.extension.api.annotation.param.Connection;
 import org.mule.runtime.extension.api.annotation.param.MediaType;
@@ -21,11 +20,10 @@ public class ListRepoIssuesOperation {
         @MediaType(MediaType.APPLICATION_JSON)
         public Result<InputStream, InputStream> listRepoIssues (@Connection GithubmarinaConnection connection,
                                                                @DisplayName("Username") String username,
-                                                               @DisplayName("Reponame") String reponame
+                                                               @DisplayName("Reponame") String reponame,
+                                                                @DisplayName("Since") String since
         ) throws IOException, TimeoutException {
-            SourceService sourceService = new SourceService(connection, resultConverter);
-            HttpResponse httpResponse = connection.getService().listRepositoryIssues(username, reponame);
-            sourceService.convertInputStreamToIssue(httpResponse.getEntity().getContent());
+            HttpResponse httpResponse = connection.getService().listRepositoryIssues(username, reponame, since);
             return resultConverter.buildResult(connection.getService().getHttpClientGithub().getAttributes(httpResponse), httpResponse.getEntity().getContent());
         }
 }

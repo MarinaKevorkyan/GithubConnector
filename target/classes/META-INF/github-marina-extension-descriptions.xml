@@ -2,7 +2,7 @@
 <extension-documentation>
     <configs>
         <config name="config">
-            <description><![CDATA[Default configuration]]></description>
+            <description><![CDATA[This class represents an extension configuration, values set in this class are commonly used across multiple operations since they represent something core from the extension.]]></description>
             <parameters>
                 <parameter name="configId">
                     <description><![CDATA[]]></description>
@@ -18,7 +18,7 @@
     </configs>
     <connections>
         <connection name="connection">
-            <description><![CDATA[]]></description>
+            <description><![CDATA[This class (as it's name implies) provides connection instances and the funcionality to disconnect and validate those connections. All connection related parameters (values required in order to create a connection) must be declared in the connection providers. This particular example is a PoolingConnectionProvider which declares that connections resolved by this provider will be pooled and reused. There are other implementations like CachedConnectionProvider which lazily creates and caches connections or simply ConnectionProvider if you want a new connection each time something requires one.]]></description>
             <parameters>
                 <parameter name="token">
                     <description><![CDATA[]]></description>
@@ -110,6 +110,9 @@
                 <parameter name="reponame">
                     <description><![CDATA[]]></description>
                 </parameter>
+                <parameter name="since">
+                    <description><![CDATA[]]></description>
+                </parameter>
                 <parameter name="config-ref">
                     <description><![CDATA[The name of the configuration to be used to execute this component]]></description>
                 </parameter>
@@ -128,6 +131,126 @@
             </parameters>
         </operation>
     </operations>
-    <sources/>
-    <types/>
+    <sources>
+        <source name="githubSource">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="owner">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="repoName">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="since">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="config-ref">
+                    <description><![CDATA[The name of the configuration to be used to execute this component]]></description>
+                </parameter>
+                <parameter name="primaryNodeOnly">
+                    <description><![CDATA[Whether this source should only be executed on the primary node when runnning in Cluster]]></description>
+                </parameter>
+                <parameter name="schedulingStrategy">
+                    <description><![CDATA[Configures the scheduler that triggers the polling]]></description>
+                </parameter>
+                <parameter name="redeliveryPolicy">
+                    <description><![CDATA[Defines a policy for processing the redelivery of the same message]]></description>
+                </parameter>
+                <parameter name="reconnectionStrategy">
+                    <description><![CDATA[A retry strategy in case of connectivity errors]]></description>
+                </parameter>
+            </parameters>
+        </source>
+    </sources>
+    <types>
+        <type name="com.mulesoft.connector.github.internal.Domain.Issue">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="active_lock_reason">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="assignee">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="assignees">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="author_association">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="body">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="closed_at">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="comments">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="comments_url">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="created_at">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="events_url">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="html_url">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="id">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="labels">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="labels_url">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="locked">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="milestone">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="node_id">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="number">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="performed_via_github_app">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="reactions">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="repository_url">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="state">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="state_reason">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="timeline_url">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="title">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="updated_at">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="url">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="user">
+                    <description><![CDATA[]]></description>
+                </parameter>
+            </parameters>
+        </type>
+    </types>
 </extension-documentation>

@@ -40,13 +40,13 @@ public class GithubMarinaService {
         return httpClientGithub.send(httpRequest, TIMEOUT, TimeUnit.SECONDS);
     }
 
-    public HttpResponse listRepositoryIssues(String owner, String repoName) throws IOException, TimeoutException {
+    public HttpResponse listRepositoryIssues(String owner, String repoName, String since) throws IOException, TimeoutException {
         HttpRequestBuilder builder = httpClientGithub.request(HttpConstants.Method.GET, httpClientGithub.setUri("repos/" + owner + "/" + repoName + "/issues"), new HashMap<>());
 
         builder.addQueryParam("state", "all");
         builder.addQueryParam("sort", "created");
         builder.addQueryParam("direction", "ASC");
-        builder.addQueryParam("since", "2022-04-12");
+        builder.addQueryParam("since", since);
 
         HttpRequest httpRequest = builder.build();
         return httpClientGithub.send(httpRequest, TIMEOUT, TimeUnit.SECONDS);

@@ -3,7 +3,7 @@
     "id": "java",
     "attributes": {
       "type": "com.mulesoft.connector.github.internal.Extension.GithubmarinaExtension",
-      "version": "0.0.1-SNAPSHOT-0.0.39"
+      "version": "0.0.1-SNAPSHOT-0.0.55"
     }
   },
   "name": "Github-marina",
@@ -13,7 +13,9 @@
     "attributes": {
       "privilegedExportedPackages": [],
       "privilegedArtifactIds": [],
-      "exportedPackages": [],
+      "exportedPackages": [
+        "com.mulesoft.connector.github.internal.Domain"
+      ],
       "exportedResources": []
     }
   },
