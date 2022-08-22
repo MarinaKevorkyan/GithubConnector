@@ -70,6 +70,6 @@ public class GithubSource extends PollingSource<Issue, InputStream> {
     @Override
     public void onRejectedItem(Result<Issue, InputStream> result, SourceCallbackContext sourceCallbackContext) {
         LOGGER.debug("Issue: " + result.getOutput() + "has been rejected");
-        System.out.println("Issue: " + result.getOutput().getNumber() + "has been rejected");
+        System.out.println("Issue: " + result.getOutput().getNumber() + " has been rejected");
     }
 }
