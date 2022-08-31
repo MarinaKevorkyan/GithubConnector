@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	  xmlns:github-marina="http://www.mulesoft.org/schema/mule/github-marina" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	  xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd
+http://www.mulesoft.org/schema/mule/github-marina http://www.mulesoft.org/schema/mule/github-marina/current/mule-github-marina.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<munit:config name="CreateAnIssueTestCase.xml" />
+	<github-marina:config name="Github_marina_test_issue" doc:name="Github-marina Config" doc:id="66acdd9e-9527-4ce9-9ec6-d09bf0c015cb" >
+		<github-marina:connection token="#[vars.token]" />
+	</github-marina:config>
+	<munit:test name="CreateAnIssueTestCaseTest" doc:id="3efe6c45-db50-4967-b360-e75bd2796713" >
+		<munit:execution >
+			<set-variable value="marinakevorkyan" doc:name="Username" doc:id="86b8aa25-72a7-44ef-a7cc-36663097fd17" variableName="username" />
+			<set-variable value="GithubConnector" doc:name="Reponame" doc:id="86339b0d-fdf5-4d3e-98fb-ce3b0f8a9e1a" variableName="reponame"/>
+			<set-variable value="" doc:name="TokenVar" doc:id="6d59a9ce-8e42-42ea-b3ec-d4dcb8966348" variableName="token" />
+			<set-variable value="titulo de prueba" doc:name="Title" doc:id="3c7194ae-76be-45d2-873d-791d82db59b6" variableName="title"/>
+			<set-variable value="body de prueba" doc:name="Body" doc:id="51be8df3-66cc-4685-b47a-b94f3c0a2459" variableName="body"/>
+			<github-marina:create-an-issue doc:name="Create an issue" doc:id="fc886cfd-4858-43cb-919e-1828a7e29154" config-ref="Github_marina_test_issue" username="#[vars.username]" reponame="#[vars.reponame]" title="#[vars.title]" body="#[vars.body]"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals title" doc:id="5e7e730f-cfee-4f6f-a097-467276faa168" expected="#[vars.title]" actual="#[payload.title]"/>
+			<munit-tools:assert-equals doc:name="Assert equals body" doc:id="22e72ab0-2f41-4947-aff8-696dd664e7da" actual="#[payload.body]" expected="#[vars.body]" />
+		</munit:validation>
+	</munit:test>
+
+</mule>
