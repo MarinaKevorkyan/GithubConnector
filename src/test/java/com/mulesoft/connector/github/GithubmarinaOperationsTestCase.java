@@ -77,11 +77,16 @@ public class GithubmarinaOperationsTestCase extends MuleArtifactFunctionalTestCa
 //
 //    ByteArrayOutputStream baos = new ByteArrayOutputStream();
 //    ObjectOutputStream oos = new ObjectOutputStream(baos);
+//
 //    oos.writeObject(issue);
+//
 //    oos.flush();
 //    oos.close();
-//    InputStream iss = new ByteArrayInputStream(baos.toByteArray());
 //
-//    System.out.println(iss);
+//    InputStream inputStreamIssue = new ByteArrayInputStream(baos.toByteArray());
+
+
+
+
 //  }
 }

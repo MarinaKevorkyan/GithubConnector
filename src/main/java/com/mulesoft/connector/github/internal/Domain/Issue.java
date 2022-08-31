@@ -3,34 +3,42 @@ package com.mulesoft.connector.github.internal.Domain;
 import java.util.ArrayList;
 
 public class Issue {
-    public String url;
-    public String repository_url;
-    public String labels_url;
-    public String comments_url;
-    public String events_url;
-    public String html_url;
-    public int id;
-    public String node_id;
-    public int number;
-    public String title;
-    public User user;
-    public ArrayList<Object> labels;
-    public String state;
-    public boolean locked;
-    public Object assignee;
-    public ArrayList<Object> assignees;
-    public Object milestone;
-    public int comments;
-    public String created_at;
-    public String updated_at;
-    public String closed_at;
-    public String author_association;
-    public Object active_lock_reason;
-    public String body;
-    public Reactions reactions;
-    public String timeline_url;
-    public Object performed_via_github_app;
-    public String state_reason;
+    private String url;
+    private String repository_url;
+    private String labels_url;
+    private String comments_url;
+    private String events_url;
+    private String html_url;
+    private int id;
+    private String node_id;
+    private int number;
+    private String title;
+    private User user;
+    private ArrayList<Object> labels;
+    private String state;
+    private boolean locked;
+    private Object assignee;
+    private ArrayList<Object> assignees;
+    private Object milestone;
+    private int comments;
+    private String created_at;
+    private String updated_at;
+    private String closed_at;
+    private String author_association;
+    private Object active_lock_reason;
+    private String body;
+    private Reactions reactions;
+    private String timeline_url;
+    private Object performed_via_github_app;
+    private String state_reason;
+
+    public Issue(String title, String body, Object milestone, ArrayList<Object> labels, ArrayList<Object> assignees) {
+        this.title = title;
+        this.labels = labels;
+        this.assignees = assignees;
+        this.milestone = milestone;
+        this.body = body;
+    }
 
     public Issue(String url, String repository_url, String labels_url, String comments_url, String events_url, String html_url, int id, String node_id, int number, String title, User user, ArrayList<Object> labels, String state, boolean locked, Object assignee, ArrayList<Object> assignees, Object milestone, int comments, String created_at, String updated_at, String closed_at, String author_association, Object active_lock_reason, String body, Reactions reactions, String timeline_url, Object performed_via_github_app, String state_reason) {
         this.url = url;
@@ -67,56 +75,16 @@ public class Issue {
         return url;
     }
 
-    public String getRepository_url() {
-        return repository_url;
-    }
-
-    public String getLabels_url() {
-        return labels_url;
-    }
-
-    public String getComments_url() {
-        return comments_url;
-    }
-
-    public String getEvents_url() {
-        return events_url;
-    }
-
-    public String getHtml_url() {
-        return html_url;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getNode_id() {
-        return node_id;
-    }
-
-    public int getNumber() {
-        return number;
+    public String getCreated_at() {
+        return created_at;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public User getUser() {
-        return user;
-    }
-
     public ArrayList<Object> getLabels() {
         return labels;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public boolean isLocked() {
-        return locked;
     }
 
     public Object getAssignee() {
@@ -131,48 +99,7 @@ public class Issue {
         return milestone;
     }
 
-    public int getComments() {
-        return comments;
-    }
-
-    public String getCreated_at() {
-        return created_at;
-    }
-
-    public String getUpdated_at() {
-        return updated_at;
-    }
-
-    public String getClosed_at() {
-        return closed_at;
-    }
-
-    public String getAuthor_association() {
-        return author_association;
-    }
-
-    public Object getActive_lock_reason() {
-        return active_lock_reason;
-    }
-
     public String getBody() {
         return body;
     }
-
-    public Reactions getReactions() {
-        return reactions;
-    }
-
-    public String getTimeline_url() {
-        return timeline_url;
-    }
-
-    public Object getPerformed_via_github_app() {
-        return performed_via_github_app;
-    }
-
-    public String getState_reason() {
-        return state_reason;
-    }
-
 }

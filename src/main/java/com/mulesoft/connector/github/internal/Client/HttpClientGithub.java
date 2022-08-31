@@ -1,6 +1,7 @@
 package com.mulesoft.connector.github.internal.Client;
 
 import com.google.gson.Gson;
+import com.mulesoft.connector.github.internal.Domain.Issue;
 import org.mule.runtime.http.api.HttpConstants;
 import org.mule.runtime.http.api.HttpHeaders;
 import org.mule.runtime.http.api.client.HttpClient;
@@ -13,7 +14,6 @@ import org.mule.runtime.http.api.domain.message.response.HttpResponse;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -48,7 +48,7 @@ public class HttpClientGithub {
     }
 
     public HttpRequestBuilder addHeaders(HttpRequestBuilder requestBuilder) {
-        return requestBuilder.addHeader(HttpHeaders.Names.AUTHORIZATION, "token " + this.token);
+        return requestBuilder.addHeader(HttpHeaders.Names.AUTHORIZATION, "token " + token);
     }
 
     public InputStream getAttributes(HttpResponse response) {
@@ -85,13 +85,13 @@ public class HttpClientGithub {
 //    }
 
 //    --------------------------- Create an issue ----------------------
-    public HashMap<String, Object> createBodyIssue(String title, String body, String milestone, ArrayList<String> labels, ArrayList<String> assignees) {
+    public HashMap<String, Object> createBodyIssue(Issue issue) {
         HashMap<String, Object> bodyIssue = new HashMap<>();
-        bodyIssue.put("title", title);
-        bodyIssue.put("body", body);
-        bodyIssue.put("milestone", milestone);
-        bodyIssue.put("labels", labels);
-        bodyIssue.put("assignees", assignees);
+        bodyIssue.put("title", issue.getTitle());
+        bodyIssue.put("body", issue.getBody());
+        bodyIssue.put("milestone", issue.getMilestone());
+        bodyIssue.put("labels", issue.getLabels());
+        bodyIssue.put("assignees", issue.getAssignees());
 
         return bodyIssue;
     }

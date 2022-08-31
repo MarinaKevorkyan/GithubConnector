@@ -1,13 +1,14 @@
 package com.mulesoft.connector.github.internal.Sources;
 
-import com.mulesoft.connector.github.internal.Connection.GithubmarinaConnection;
+import com.mulesoft.connector.github.internal.Connection.GithubConnection;
+import com.mulesoft.connector.github.internal.Converters.IssueConverter;
 import com.mulesoft.connector.github.internal.Converters.ResultConverter;
 import com.mulesoft.connector.github.internal.Domain.Issue;
-import com.mulesoft.connector.github.internal.Service.SourceService;
 import org.mule.runtime.api.connection.ConnectionProvider;
 import org.mule.runtime.api.exception.MuleException;
 import org.mule.runtime.extension.api.annotation.Alias;
 import org.mule.runtime.extension.api.annotation.param.Connection;
+import org.mule.runtime.extension.api.annotation.param.MediaType;
 import org.mule.runtime.extension.api.annotation.param.Parameter;
 import org.mule.runtime.extension.api.annotation.param.display.DisplayName;
 import org.mule.runtime.extension.api.annotation.source.EmitsResponse;
@@ -15,39 +16,41 @@ import org.mule.runtime.extension.api.runtime.operation.Result;
 import org.mule.runtime.extension.api.runtime.source.PollContext;
 import org.mule.runtime.extension.api.runtime.source.PollingSource;
 import org.mule.runtime.extension.api.runtime.source.SourceCallbackContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.mule.runtime.http.api.domain.message.response.HttpResponse;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 @Alias(value = "githubSource", description = "Listener for new issues")
 @DisplayName("Issue listener")
+@MediaType(MediaType.ANY)
 @EmitsResponse
-public class GithubSource extends PollingSource<Issue, InputStream> {
+public class GithubSource extends PollingSource<InputStream, InputStream> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SourceService.class);
+//    private static final Logger LOGGER = LoggerFactory.getLogger(GithubSource.class);
     @Connection
-    private ConnectionProvider<GithubmarinaConnection> connectionProvider;
+    private ConnectionProvider<GithubConnection> connectionProvider;
 
-    private GithubmarinaConnection connection;
+    private GithubConnection connection;
+    private String watermarkField;
 
-    private ResultConverter resultConverter;
+    private static ResultConverter resultConverter;
+    private static IssueConverter issueConverter;
 
-    private SourceService sourceService;
     @Parameter
     private String owner;
     @Parameter
-    private String repoName;
-    @Parameter
-    private String since;
+       private String repoName;
 
     @Override
     protected void doStart() throws MuleException {
         connection = connectionProvider.connect();
         resultConverter = new ResultConverter();
-        sourceService = new SourceService(connection, resultConverter);
+        issueConverter = new IssueConverter();
     }
 
     @Override
@@ -56,20 +59,52 @@ public class GithubSource extends PollingSource<Issue, InputStream> {
     }
 
     @Override
-    public void poll(PollContext<Issue, InputStream> pollContext) {
+    public void poll(PollContext<InputStream, InputStream> pollContext) {
         try {
-            sourceService.poll(pollContext, owner, repoName, since);
+            pollIssue(pollContext, owner, repoName);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (TimeoutException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     @Override
-    public void onRejectedItem(Result<Issue, InputStream> result, SourceCallbackContext sourceCallbackContext) {
-        LOGGER.debug("Issue: " + result.getOutput() + "has been rejected");
-        System.out.println("Issue: " + result.getOutput().getNumber() + " has been rejected");
+    public void onRejectedItem(Result<InputStream, InputStream> result, SourceCallbackContext sourceCallbackContext) {
+//        LOGGER.debug("Issue: " + result.getOutput() + "has been rejected");
+        System.out.println("Issue: " + " has been rejected");
+    }
+
+    public void pollIssue(PollContext<InputStream, InputStream> pollContext, String owner, String repoName) throws IOException, TimeoutException {
+        if(pollContext.isSourceStopping()){
+            return;
+        }
+        HttpResponse issuesResponse = connection.getService().listRepositoryIssues(owner, repoName, watermarkField);
+        List<Issue> issueList = issueConverter.convertInputStreamToIssue(issuesResponse.getEntity().getContent());
+        for(Issue issue : issueList){
+            if(pollContext.isSourceStopping()){
+                break;
+            }
+            PollContext.PollItemStatus status = pollContext.accept(itemIssue -> {
+                SourceCallbackContext context = itemIssue.getSourceCallbackContext(); //gets the context from the itemIssue
+                context.addVariable("attributes", issue); //Saves the data on the SourcecallbackContext
+
+                Result<InputStream, InputStream> result = null;
+                try {
+                    result = resultConverter.buildResultIssue(connection.getService().getHttpClientGithub().getAttributes(issuesResponse), issue);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                itemIssue.setResult(result);
+                itemIssue.setId(issue.getUrl()); //for idempotency
+                itemIssue.setWatermark(issue.getCreated_at());
+                watermarkField = issue.getCreated_at();
+            });
+
+            if(!status.equals(PollContext.PollItemStatus.ACCEPTED)){
+//                LOGGER.debug("Item rejected with code: " + status.name());
+                System.out.println("Item rejected with code: " + status.name());
+            }
+        }
     }
 }

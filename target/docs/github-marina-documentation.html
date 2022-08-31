@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.2">
-<title>Github-marina Module Connector Reference</title>
+<title>Github-marina Connector Connector Reference</title>
 <style>
 /**
  * (c) 2003-2015 MuleSoft, Inc. This software is protected under international copyright
@@ -1973,7 +1973,7 @@ p.tableblock {
 </head>
 <body class="article">
 <div id="header">
-<h1>Github-marina Module Connector Reference</h1>
+<h1>Github-marina Connector Connector Reference</h1>
 </div>
 <div id="content">
 <div id="preamble">
@@ -2233,7 +2233,7 @@ p.tableblock {
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Labels</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Array of String</p>
+<p>Array of Any</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -2242,7 +2242,7 @@ p.tableblock {
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Assignees</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Array of String</p>
+<p>Array of Any</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -2747,15 +2747,6 @@ p.tableblock {
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>x</strong>&#160;</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Since</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>x</strong>&#160;</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Config Ref</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>ConfigurationProvider</p>
@@ -2781,6 +2772,25 @@ p.tableblock {
 <td class="tableblock halign-left valign-top"><p class="tableblock">Configures the scheduler that triggers the polling</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>x</strong>&#160;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Streaming Strategy</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><a href="#RepeatableInMemoryStream">Repeatable In Memory Stream</a></p>
+</li>
+<li>
+<p><a href="#RepeatableFileStoreStream">Repeatable File Store Stream</a></p>
+</li>
+<li>
+<p>non-repeatable-stream</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configure if repeatable streams should be used and their behaviour</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#160;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Redelivery Policy</p></td>
@@ -2821,7 +2831,7 @@ p.tableblock {
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Type</strong></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><a href="#Issue">Issue</a></p>
+<p>Any</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3175,679 +3185,6 @@ p.tableblock {
 </table>
 </div>
 <div class="sect2">
-<h3 id="Issue">Issue</h3>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 25%;">
-<col style="width: 30%;">
-<col style="width: 15%;">
-<col style="width: 10%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Field</th>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Default Value</th>
-<th class="tableblock halign-left valign-middle">Required</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Active_lock_reason</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Any</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Assignee</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Any</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Assignees</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Array of Any</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Author_association</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Body</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Closed_at</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Comments</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Number</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Comments_url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Created_at</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Events_url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Html_url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Id</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Number</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Labels</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Array of Any</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Labels_url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Locked</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Boolean</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Milestone</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Any</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Node_id</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Number</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Performed_via_github_app</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Any</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Reactions</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><a href="#Reactions">Reactions</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Repository_url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">State</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">State_reason</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Timeline_url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Title</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Updated_at</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">User</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><a href="#User">User</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="Reactions">Reactions</h3>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 25%;">
-<col style="width: 30%;">
-<col style="width: 15%;">
-<col style="width: 10%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Field</th>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Default Value</th>
-<th class="tableblock halign-left valign-middle">Required</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Confused</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Number</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Eyes</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Number</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Heart</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Number</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Hooray</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Number</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Laugh</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Number</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Minus One</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Number</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Plus One</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Number</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Rocket</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Number</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Total_count</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Number</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="User">User</h3>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 25%;">
-<col style="width: 30%;">
-<col style="width: 15%;">
-<col style="width: 10%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Field</th>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Default Value</th>
-<th class="tableblock halign-left valign-middle">Required</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Avatar_url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Events_url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Followers_url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Following_url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Gists_url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Gravatar_id</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Html_url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Id</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Number</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Login</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Node_id</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Organizations_url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Received_events_url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Repos_url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Site_admin</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Boolean</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Starred_url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Subscriptions_url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Url</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="RedeliveryPolicy">Redelivery Policy</h3>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 25%;">
-<col style="width: 30%;">
-<col style="width: 15%;">
-<col style="width: 10%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Field</th>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Default Value</th>
-<th class="tableblock halign-left valign-middle">Required</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Max Redelivery Count</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Number</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The maximum number of times a message can be redelivered and processed unsuccessfully before triggering process-failed-message</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Message Digest Algorithm</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The secure hashing algorithm to use. If not set, the default is SHA-256.</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Message Identifier</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><a href="#RedeliveryPolicyMessageIdentifier">Redelivery Policy Message Identifier</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Defines which strategy is used to identify the messages.</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Object Store</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>ObjectStore</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">The object store where the redelivery counter for each message is going to be stored.</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="RedeliveryPolicyMessageIdentifier">Redelivery Policy Message Identifier</h3>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 25%;">
-<col style="width: 30%;">
-<col style="width: 15%;">
-<col style="width: 10%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Field</th>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Default Value</th>
-<th class="tableblock halign-left valign-middle">Required</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Use Secure Hash</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>Boolean</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Whether to use a secure hash algorithm to identify a redelivered message</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Id Expression</p></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Defines one or more expressions to use to determine when a message has been redelivered. This property may only be set if useSecureHash is false.</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
 <h3 id="RepeatableInMemoryStream">Repeatable In Memory Stream</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -3979,12 +3316,112 @@ p.tableblock {
 </tbody>
 </table>
 </div>
+<div class="sect2">
+<h3 id="RedeliveryPolicy">Redelivery Policy</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 25%;">
+<col style="width: 30%;">
+<col style="width: 15%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Field</th>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Default Value</th>
+<th class="tableblock halign-left valign-middle">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Max Redelivery Count</p></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>Number</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The maximum number of times a message can be redelivered and processed unsuccessfully before triggering process-failed-message</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Message Digest Algorithm</p></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>String</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The secure hashing algorithm to use. If not set, the default is SHA-256.</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Message Identifier</p></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p><a href="#RedeliveryPolicyMessageIdentifier">Redelivery Policy Message Identifier</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Defines which strategy is used to identify the messages.</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Object Store</p></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>ObjectStore</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The object store where the redelivery counter for each message is going to be stored.</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="RedeliveryPolicyMessageIdentifier">Redelivery Policy Message Identifier</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 25%;">
+<col style="width: 30%;">
+<col style="width: 15%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Field</th>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Default Value</th>
+<th class="tableblock halign-left valign-middle">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Use Secure Hash</p></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>Boolean</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Whether to use a secure hash algorithm to identify a redelivered message</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Id Expression</p></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>String</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Defines one or more expressions to use to determine when a message has been redelivered. This property may only be set if useSecureHash is false.</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-08-22 15:15:23 -03:00
+Last updated 2022-08-31 10:44:21 -03:00
 </div>
 </div>
 </body>

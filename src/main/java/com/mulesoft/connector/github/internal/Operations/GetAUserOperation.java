@@ -1,6 +1,6 @@
 package com.mulesoft.connector.github.internal.Operations;
 
-import com.mulesoft.connector.github.internal.Connection.GithubmarinaConnection;
+import com.mulesoft.connector.github.internal.Connection.GithubConnection;
 import com.mulesoft.connector.github.internal.Converters.ResultConverter;
 import org.mule.runtime.extension.api.annotation.Alias;
 import org.mule.runtime.extension.api.annotation.param.Connection;
@@ -16,9 +16,9 @@ import java.util.concurrent.TimeoutException;
 
 @Alias("getAUser")
 public class GetAUserOperation {
-    private static ResultConverter resultConverter = new ResultConverter();
+    public static ResultConverter resultConverter = new ResultConverter();
     @MediaType(MediaType.APPLICATION_JSON)
-    public static Result<InputStream, InputStream> getUserInfo(@Connection GithubmarinaConnection connection, @DisplayName("Username") String username) throws IOException, TimeoutException {
+    public Result<InputStream, InputStream> getUserInfo(@Connection GithubConnection connection, @DisplayName("Username") String username) throws IOException, TimeoutException {
         HttpResponse httpResponse = connection.getService().getAUser(username);
         return resultConverter.buildResult(connection.getService().getHttpClientGithub().getAttributes(httpResponse), httpResponse.getEntity().getContent());
     }

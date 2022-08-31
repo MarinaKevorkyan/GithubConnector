@@ -1,6 +1,6 @@
 
 
-= Github-marina Module Connector Reference
+= Github-marina Connector Connector Reference
 
 
 This is the main class of an extension, is the entry point from which configurations, connection providers, operations and sources are going to be declared.
@@ -74,8 +74,8 @@ This class (as it's name implies) provides connection instances and the funciona
 | Title a| String |  |  | *x*{nbsp}
 | Body a| String |  |  | {nbsp}
 | Milestone a| String |  |  | {nbsp}
-| Labels a| Array of String |  |  | {nbsp}
-| Assignees a| Array of String |  |  | {nbsp}
+| Labels a| Array of Any |  |  | {nbsp}
+| Assignees a| Array of Any |  |  | {nbsp}
 | Config Ref a| ConfigurationProvider |  The name of the configuration to be used to execute this component |  | *x*{nbsp}
 | Streaming Strategy a| * <<RepeatableInMemoryStream>>
 * <<RepeatableFileStoreStream>>
@@ -201,10 +201,12 @@ This class (as it's name implies) provides connection instances and the funciona
 | Configuration | String | The name of the configuration to use. | | *x*{nbsp}
 | Owner a| String |  |  | *x*{nbsp}
 | Repo Name a| String |  |  | *x*{nbsp}
-| Since a| String |  |  | *x*{nbsp}
 | Config Ref a| ConfigurationProvider |  The name of the configuration to be used to execute this component |  | *x*{nbsp}
 | Primary Node Only a| Boolean |  Whether this source should only be executed on the primary node when runnning in Cluster |  | {nbsp}
 | Scheduling Strategy a| scheduling-strategy |  Configures the scheduler that triggers the polling |  | *x*{nbsp}
+| Streaming Strategy a| * <<RepeatableInMemoryStream>>
+* <<RepeatableFileStoreStream>>
+* non-repeatable-stream |  Configure if repeatable streams should be used and their behaviour |  | {nbsp}
 | Redelivery Policy a| <<RedeliveryPolicy>> |  Defines a policy for processing the redelivery of the same message |  | {nbsp}
 | Reconnection Strategy a| * <<Reconnect>>
 * <<ReconnectForever>> |  A retry strategy in case of connectivity errors |  | {nbsp}
@@ -214,7 +216,7 @@ This class (as it's name implies) provides connection instances and the funciona
 
 [%autowidth.spread]
 |===
-| *Type* a| <<Issue>>
+| *Type* a| Any
 | *Attributes Type* a| Any
 |===
 
@@ -299,108 +301,6 @@ This class (as it's name implies) provides connection instances and the funciona
 ** DAYS | A time unit that qualifies the maxIdleTime attribute |  | 
 |======================
 
-[[Issue]]
-=== Issue
-
-[cols=".^20%,.^25%,.^30%,.^15%,.^10%", options="header"]
-|======================
-| Field | Type | Description | Default Value | Required
-| Active_lock_reason a| Any |  |  | 
-| Assignee a| Any |  |  | 
-| Assignees a| Array of Any |  |  | 
-| Author_association a| String |  |  | 
-| Body a| String |  |  | 
-| Closed_at a| String |  |  | 
-| Comments a| Number |  |  | 
-| Comments_url a| String |  |  | 
-| Created_at a| String |  |  | 
-| Events_url a| String |  |  | 
-| Html_url a| String |  |  | 
-| Id a| Number |  |  | 
-| Labels a| Array of Any |  |  | 
-| Labels_url a| String |  |  | 
-| Locked a| Boolean |  |  | 
-| Milestone a| Any |  |  | 
-| Node_id a| String |  |  | 
-| Number a| Number |  |  | 
-| Performed_via_github_app a| Any |  |  | 
-| Reactions a| <<Reactions>> |  |  | 
-| Repository_url a| String |  |  | 
-| State a| String |  |  | 
-| State_reason a| String |  |  | 
-| Timeline_url a| String |  |  | 
-| Title a| String |  |  | 
-| Updated_at a| String |  |  | 
-| Url a| String |  |  | 
-| User a| <<User>> |  |  | 
-|======================
-
-[[Reactions]]
-=== Reactions
-
-[cols=".^20%,.^25%,.^30%,.^15%,.^10%", options="header"]
-|======================
-| Field | Type | Description | Default Value | Required
-| Confused a| Number |  |  | 
-| Eyes a| Number |  |  | 
-| Heart a| Number |  |  | 
-| Hooray a| Number |  |  | 
-| Laugh a| Number |  |  | 
-| Minus One a| Number |  |  | 
-| Plus One a| Number |  |  | 
-| Rocket a| Number |  |  | 
-| Total_count a| Number |  |  | 
-| Url a| String |  |  | 
-|======================
-
-[[User]]
-=== User
-
-[cols=".^20%,.^25%,.^30%,.^15%,.^10%", options="header"]
-|======================
-| Field | Type | Description | Default Value | Required
-| Avatar_url a| String |  |  | 
-| Events_url a| String |  |  | 
-| Followers_url a| String |  |  | 
-| Following_url a| String |  |  | 
-| Gists_url a| String |  |  | 
-| Gravatar_id a| String |  |  | 
-| Html_url a| String |  |  | 
-| Id a| Number |  |  | 
-| Login a| String |  |  | 
-| Node_id a| String |  |  | 
-| Organizations_url a| String |  |  | 
-| Received_events_url a| String |  |  | 
-| Repos_url a| String |  |  | 
-| Site_admin a| Boolean |  |  | 
-| Starred_url a| String |  |  | 
-| Subscriptions_url a| String |  |  | 
-| Type a| String |  |  | 
-| Url a| String |  |  | 
-|======================
-
-[[RedeliveryPolicy]]
-=== Redelivery Policy
-
-[cols=".^20%,.^25%,.^30%,.^15%,.^10%", options="header"]
-|======================
-| Field | Type | Description | Default Value | Required
-| Max Redelivery Count a| Number | The maximum number of times a message can be redelivered and processed unsuccessfully before triggering process-failed-message |  | 
-| Message Digest Algorithm a| String | The secure hashing algorithm to use. If not set, the default is SHA-256. |  | 
-| Message Identifier a| <<RedeliveryPolicyMessageIdentifier>> | Defines which strategy is used to identify the messages. |  | 
-| Object Store a| ObjectStore | The object store where the redelivery counter for each message is going to be stored. |  | 
-|======================
-
-[[RedeliveryPolicyMessageIdentifier]]
-=== Redelivery Policy Message Identifier
-
-[cols=".^20%,.^25%,.^30%,.^15%,.^10%", options="header"]
-|======================
-| Field | Type | Description | Default Value | Required
-| Use Secure Hash a| Boolean | Whether to use a secure hash algorithm to identify a redelivered message |  | 
-| Id Expression a| String | Defines one or more expressions to use to determine when a message has been redelivered. This property may only be set if useSecureHash is false. |  | 
-|======================
-
 [[RepeatableInMemoryStream]]
 === Repeatable In Memory Stream
 
@@ -431,5 +331,27 @@ This class (as it's name implies) provides connection instances and the funciona
 ** KB
 ** MB
 ** GB | The unit in which maxInMemorySize is expressed |  | 
+|======================
+
+[[RedeliveryPolicy]]
+=== Redelivery Policy
+
+[cols=".^20%,.^25%,.^30%,.^15%,.^10%", options="header"]
+|======================
+| Field | Type | Description | Default Value | Required
+| Max Redelivery Count a| Number | The maximum number of times a message can be redelivered and processed unsuccessfully before triggering process-failed-message |  | 
+| Message Digest Algorithm a| String | The secure hashing algorithm to use. If not set, the default is SHA-256. |  | 
+| Message Identifier a| <<RedeliveryPolicyMessageIdentifier>> | Defines which strategy is used to identify the messages. |  | 
+| Object Store a| ObjectStore | The object store where the redelivery counter for each message is going to be stored. |  | 
+|======================
+
+[[RedeliveryPolicyMessageIdentifier]]
+=== Redelivery Policy Message Identifier
+
+[cols=".^20%,.^25%,.^30%,.^15%,.^10%", options="header"]
+|======================
+| Field | Type | Description | Default Value | Required
+| Use Secure Hash a| Boolean | Whether to use a secure hash algorithm to identify a redelivered message |  | 
+| Id Expression a| String | Defines one or more expressions to use to determine when a message has been redelivered. This property may only be set if useSecureHash is false. |  | 
 |======================
 

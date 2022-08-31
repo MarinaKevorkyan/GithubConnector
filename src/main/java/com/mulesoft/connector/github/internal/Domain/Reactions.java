@@ -3,18 +3,18 @@ package com.mulesoft.connector.github.internal.Domain;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Reactions{
-    public String url;
-    public int total_count;
+    private String url;
+    private int total_count;
     @JsonProperty("+1")
-    public int plusOne;
+    private int plusOne;
     @JsonProperty("-1")
-    public int minusOne;
-    public int laugh;
-    public int hooray;
-    public int confused;
-    public int heart;
-    public int rocket;
-    public int eyes;
+    private int minusOne;
+    private int laugh;
+    private int hooray;
+    private int confused;
+    private int heart;
+    private int rocket;
+    private int eyes;
 
     public Reactions(String url, int total_count, int plusOne, int minusOne, int laugh, int hooray, int confused, int heart, int rocket, int eyes) {
         this.url = url;

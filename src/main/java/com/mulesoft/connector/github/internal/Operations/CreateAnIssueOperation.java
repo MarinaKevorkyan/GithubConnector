@@ -1,7 +1,8 @@
 package com.mulesoft.connector.github.internal.Operations;
 
-import com.mulesoft.connector.github.internal.Connection.GithubmarinaConnection;
+import com.mulesoft.connector.github.internal.Connection.GithubConnection;
 import com.mulesoft.connector.github.internal.Converters.ResultConverter;
+import com.mulesoft.connector.github.internal.Domain.Issue;
 import org.mule.runtime.extension.api.annotation.Alias;
 import org.mule.runtime.extension.api.annotation.param.Connection;
 import org.mule.runtime.extension.api.annotation.param.MediaType;
@@ -17,20 +18,21 @@ import java.util.concurrent.TimeoutException;
 
 @Alias("CreateAnIssue")
 public class CreateAnIssueOperation {
-    ResultConverter resultConverter;
+    private ResultConverter resultConverter = new ResultConverter();
     @MediaType(MediaType.APPLICATION_JSON)
-    public Result<InputStream, InputStream> createAnIssue (@Connection GithubmarinaConnection connection,
+    public Result<InputStream, InputStream> createAnIssue (@Connection GithubConnection connection,
                                                            @DisplayName("Username") String username,
                                                            @DisplayName("Reponame") String reponame,
                                                            @DisplayName("Title") String title,
                                                            @DisplayName("Body") @Optional String body,
                                                            @DisplayName ("Milestone") @Optional String milestone,
-                                                           @DisplayName ("Labels")  @Optional ArrayList<String> labels,
-                                                           @DisplayName ("Assignees") @Optional ArrayList<String> assignees
+                                                           @DisplayName ("Labels")  @Optional ArrayList<Object> labels,
+                                                           @DisplayName ("Assignees") @Optional ArrayList<Object> assignees
 
     ) throws IOException, TimeoutException {
 
-        HttpResponse httpResponse = connection.getService().createAnIssue(username, reponame, title, body, milestone, labels, assignees);
+        Issue issue = new Issue(title, body, milestone, labels, assignees);
+        HttpResponse httpResponse = connection.getService().createAnIssue(username, reponame, issue);
         return resultConverter.buildResult(connection.getService().getHttpClientGithub().getAttributes(httpResponse), httpResponse.getEntity().getContent());
     }
 }
