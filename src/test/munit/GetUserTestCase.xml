@@ -9,19 +9,20 @@
 		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd
 http://www.mulesoft.org/schema/mule/github-marina http://www.mulesoft.org/schema/mule/github-marina/current/mule-github-marina.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+
 	<munit:config name="new-test-suite.xml" />
-	<github-marina:config name="Github_marina_test" doc:name="Github-marina Config" doc:id="bd7699a2-3bea-4c18-8345-41cc64e8f9d6" >
-		<github-marina:connection token="#[vars.token]" />
-	</github-marina:config>
+	<configuration-properties file="automation-credentials.properties"/>
 	<munit:test name="new-test-suiteTest" doc:id="e5c03d48-863a-407e-8a9f-d267988072d2" >
 		<munit:execution >
 			<set-variable value="MarinaKevorkyan" doc:name="UsernameVar" doc:id="3248fd12-5a24-4e77-ad1c-9d20cd83fce0" variableName="username"/>
-			<set-variable value="" doc:name="TokenVar" doc:id="e86853e2-ae98-47d6-809c-18e1c4df28b0" variableName="token"/>
-			<github-marina:get-user-info doc:name="Get user info" doc:id="64d37190-e963-479b-a46a-865ee290b273" config-ref="Github_marina_test" username="#[vars.username]"/>
-			<set-variable value='#[{&#10;    "login": "MarinaKevorkyan",&#10;    "id": 106099659,&#10;    "node_id": "U_kgDOBlLzyw",&#10;    "avatar_url": "https://avatars.githubusercontent.com/u/106099659?v=4",&#10;    "gravatar_id": "",&#10;    "url": "https://api.github.com/users/MarinaKevorkyan",&#10;    "html_url": "https://github.com/MarinaKevorkyan",&#10;    "followers_url": "https://api.github.com/users/MarinaKevorkyan/followers",&#10;    "following_url": "https://api.github.com/users/MarinaKevorkyan/following{/other_user}",&#10;    "gists_url": "https://api.github.com/users/MarinaKevorkyan/gists{/gist_id}",&#10;    "starred_url": "https://api.github.com/users/MarinaKevorkyan/starred{/owner}{/repo}",&#10;    "subscriptions_url": "https://api.github.com/users/MarinaKevorkyan/subscriptions",&#10;    "organizations_url": "https://api.github.com/users/MarinaKevorkyan/orgs",&#10;    "repos_url": "https://api.github.com/users/MarinaKevorkyan/repos",&#10;    "events_url": "https://api.github.com/users/MarinaKevorkyan/events{/privacy}",&#10;    "received_events_url": "https://api.github.com/users/MarinaKevorkyan/received_events",&#10;    "type": "User",&#10;    "site_admin": false,&#10;    "name": null,&#10;    "company": null,&#10;    "blog": "",&#10;    "location": null,&#10;    "email": null,&#10;    "hireable": null,&#10;    "bio": null,&#10;    "twitter_username": null,&#10;    "public_repos": 1,&#10;    "public_gists": 0,&#10;    "followers": 0,&#10;    "following": 3,&#10;    "created_at": "2022-05-23T15:43:34Z",&#10;    "updated_at": "2022-08-25T19:48:05Z",&#10;    "private_gists": 0,&#10;    "total_private_repos": 0,&#10;    "owned_private_repos": 0,&#10;    "disk_usage": 555,&#10;    "collaborators": 0,&#10;    "two_factor_authentication": true,&#10;    "plan": {&#10;        "name": "free",&#10;        "space": 976562499,&#10;        "collaborators": 0,&#10;        "private_repos": 10000&#10;    }&#10;}]' doc:name="Payload" doc:id="20f38382-ab81-42a3-b897-d81daa9eb8b1" variableName="payload"/>
+			<github-marina:get-user-info doc:name="Get user info" doc:id="64d37190-e963-479b-a46a-865ee290b273" config-ref="Github_marina_Config" username="#[vars.username]"/>
+			<set-variable value='https://api.github.com/users/MarinaKevorkyan' doc:name="URL" doc:id="20f38382-ab81-42a3-b897-d81daa9eb8b1" variableName="url"/>
+			<set-variable value="#[output application/java&#10;---&#10;106099659]" doc:name="Id" doc:id="37bfeeb1-5846-456b-aff6-04b7a38974fc" variableName="id" />
 		</munit:execution>
 		<munit:validation >
-			<munit-tools:assert-equals doc:name="Assert equals" doc:id="e1a1b21c-fc6c-4a83-b585-ed2b658a82c2" actual="#[payload]" expected="#[vars.payload]"/>
+			<munit-tools:assert-equals doc:name="Assert equals username" doc:id="e1a1b21c-fc6c-4a83-b585-ed2b658a82c2" actual="#[payload.login]" expected="#[vars.username]"/>
+			<munit-tools:assert-equals doc:name="Assert equals url" doc:id="9dd575cb-a565-4626-95a8-811caba8ee06" actual="#[payload.url]" expected="#[vars.url]" />
+			<munit-tools:assert-equals doc:name="Assert equals avatar_id" doc:id="11481dee-e718-4397-9c0a-b1c13487f9aa" actual="#[payload.id]" expected="#[vars.id]" />
 		</munit:validation>
 	</munit:test>
 
