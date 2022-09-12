@@ -130,7 +130,8 @@ This class (as it's name implies) provides connection instances and the funciona
 
 [%autowidth.spread]
 |===
-| *Type* a| Binary
+| *Type* a| * Any
+* Any
 | *Attributes Type* a| Binary
 |===
 

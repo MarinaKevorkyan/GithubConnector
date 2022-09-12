@@ -1,0 +1,41 @@
+{
+  "runToken": "a6d93e7a-c21c-44ca-901f-2923c06d7046",
+  "projectName": "mule4-github-connector-test-application",
+  "domainLocation": "",
+  "tags": [],
+  "testNames": [],
+  "suitePaths": [
+    "GetUserTestCase.xml"
+  ],
+  "allSuitePaths": [
+    "GetUserTestCase.xml"
+  ],
+  "skipAfterFailure": false,
+  "notifierConfigurations": [
+    {
+      "clazz": "org.mule.munit.remote.notifiers.ConsoleNotifier",
+      "parameters": [
+        {
+          "name": "runToken",
+          "type": "java.lang.String",
+          "value": "a6d93e7a-c21c-44ca-901f-2923c06d7046"
+        }
+      ]
+    }
+  ],
+  "containerConfiguration": {
+    "runtimeId": "4.2.0",
+    "product": "MULE",
+    "munitWorkingDirectoryPath": "/Users/mkevorkyan/Documents/GitHub/GithubConnector/target/munitworkingdir-1266729502990000",
+    "log4JConfigurationFilePath": "",
+    "mavenConfiguration": {
+      "settingsXmlFilePath": "/Users/mkevorkyan/.m2/settings.xml",
+      "globalSettingsXmlFilePath": "/Users/mkevorkyan/documents/apache-maven-3.8.5/conf/settings.xml",
+      "mavenRepositoryDirectoryPath": "/Users/mkevorkyan/.m2/repository",
+      "offlineMode": false,
+      "forcePolicyUpdate": true,
+      "ignoreArtifactDescriptorRepositories": false
+    },
+    "serverPluginConfigurations": []
+  }
+}
