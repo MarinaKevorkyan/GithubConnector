@@ -46,6 +46,7 @@ public class GithubSource extends PollingSource<InputStream, InputStream> {
     @Parameter
        private String repoName;
 
+
     @Override
     protected void doStart() throws MuleException {
         connection = connectionProvider.connect();
