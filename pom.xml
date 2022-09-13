@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mulesoft.connectors</groupId>
     <artifactId>mule4-github-connector</artifactId>
-    <version>0.0.1-SNAPSHOT-0.0.61</version>
+    <version>0.0.1-SNAPSHOT-0.0.62</version>
     <packaging>mule-extension</packaging>
     <name>Github-marina Extension</name>
 

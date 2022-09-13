@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.mulesoft.connectors</groupId>
   <artifactId>mule4-github-connector-test-application</artifactId>
-  <version>0.0.1-SNAPSHOT-0.0.61</version>
+  <version>0.0.1-SNAPSHOT-0.0.62</version>
   <packaging>mule-application</packaging>
   <dependencies>
     <dependency>
@@ -24,10 +24,10 @@
     <dependency>
       <groupId>com.mulesoft.connectors</groupId>
       <artifactId>mule4-github-connector</artifactId>
-      <version>0.0.1-SNAPSHOT-0.0.61</version>
+      <version>0.0.1-SNAPSHOT-0.0.62</version>
       <classifier>mule-plugin</classifier>
       <scope>system</scope>
-      <systemPath>/Users/mkevorkyan/Documents/GitHub/GithubConnector/target/mule4-github-connector-0.0.1-SNAPSHOT-0.0.61-mule-plugin.jar</systemPath>
+      <systemPath>/Users/mkevorkyan/Documents/GitHub/GithubConnector/target/mule4-github-connector-0.0.1-SNAPSHOT-0.0.62-mule-plugin.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>org.mule.tests</groupId>

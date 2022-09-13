@@ -1,5 +1,5 @@
 {
-  "runToken": "a6d93e7a-c21c-44ca-901f-2923c06d7046",
+  "runToken": "eb88c20c-c0ed-4966-871a-164140a65333",
   "projectName": "mule4-github-connector-test-application",
   "domainLocation": "",
   "tags": [],
@@ -18,7 +18,7 @@
         {
           "name": "runToken",
           "type": "java.lang.String",
-          "value": "a6d93e7a-c21c-44ca-901f-2923c06d7046"
+          "value": "eb88c20c-c0ed-4966-871a-164140a65333"
         }
       ]
     }
@@ -26,7 +26,7 @@
   "containerConfiguration": {
     "runtimeId": "4.2.0",
     "product": "MULE",
-    "munitWorkingDirectoryPath": "/Users/mkevorkyan/Documents/GitHub/GithubConnector/target/munitworkingdir-1266729502990000",
+    "munitWorkingDirectoryPath": "/Users/mkevorkyan/Documents/GitHub/GithubConnector/target/munitworkingdir-1345538643358458",
     "log4JConfigurationFilePath": "",
     "mavenConfiguration": {
       "settingsXmlFilePath": "/Users/mkevorkyan/.m2/settings.xml",
