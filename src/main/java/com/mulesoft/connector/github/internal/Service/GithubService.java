@@ -48,6 +48,11 @@ public class GithubService {
         return httpClientGithub.send(httpRequest, TIMEOUT, TimeUnit.SECONDS);
     }
 
+    public HttpResponse listRepositoriesForUser (String username) throws IOException, TimeoutException {
+        HttpRequest httpRequest = httpClientGithub.request(HttpConstants.Method.GET, httpClientGithub.setUri("users/" + username + "/repos"), new HashMap<>()).build();
+        return httpClientGithub.send(httpRequest, TIMEOUT, TimeUnit.SECONDS);
+    }
+
 
 }
 

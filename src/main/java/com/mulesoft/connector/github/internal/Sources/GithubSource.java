@@ -81,7 +81,7 @@ public class GithubSource extends PollingSource<InputStream, InputStream> {
             return;
         }
         HttpResponse issuesResponse = connection.getService().listRepositoryIssues(owner, repoName, watermarkField);
-        List<Issue> issueList = issueConverter.convertInputStreamToIssue(issuesResponse.getEntity().getContent());
+        List<Issue> issueList = issueConverter.convertInputStreamToIssues(issuesResponse.getEntity().getContent());
         for(Issue issue : issueList){
             if(pollContext.isSourceStopping()){
                 break;

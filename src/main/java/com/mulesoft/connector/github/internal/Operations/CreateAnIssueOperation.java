@@ -1,5 +1,6 @@
 package com.mulesoft.connector.github.internal.Operations;
 
+import com.mulesoft.connector.github.api.Domain.IssueAnswer;
 import com.mulesoft.connector.github.internal.Connection.GithubConnection;
 import com.mulesoft.connector.github.internal.Converters.ResultConverter;
 import com.mulesoft.connector.github.internal.Domain.Issue;
@@ -19,10 +20,10 @@ import java.util.concurrent.TimeoutException;
 @Alias("CreateAnIssue")
 public class CreateAnIssueOperation {
     private ResultConverter resultConverter = new ResultConverter();
-    @MediaType(MediaType.APPLICATION_JSON)
-    public Result<InputStream, InputStream> createAnIssue (@Connection GithubConnection connection,
+    @MediaType(MediaType.ANY)
+    public Result<IssueAnswer, InputStream> createAnIssue (@Connection GithubConnection connection,
                                                            @DisplayName("Username") String username,
-                                                           @DisplayName("Reponame") String reponame,
+                                                           @DisplayName("Repository") String reponame,
                                                            @DisplayName("Title") String title,
                                                            @DisplayName("Body") @Optional String body,
                                                            @DisplayName ("Milestone") @Optional String milestone,
@@ -33,6 +34,6 @@ public class CreateAnIssueOperation {
 
         Issue issue = new Issue(title, body, milestone, labels, assignees);
         HttpResponse httpResponse = connection.getService().createAnIssue(username, reponame, issue);
-        return resultConverter.buildResult(connection.getService().getHttpClientGithub().getAttributes(httpResponse), httpResponse.getEntity().getContent());
+        return resultConverter.buildResultIssueResponse(connection.getService().getHttpClientGithub().getAttributes(httpResponse), httpResponse.getEntity().getContent());
     }
 }

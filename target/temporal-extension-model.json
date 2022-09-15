@@ -1,14 +1,14 @@
 {
   "name": "Github-marina",
   "description": "This is the main class of an extension, is the entry point from which configurations, connection providers, operations and sources are going to be declared.",
-  "version": "0.0.1-SNAPSHOT-0.0.62",
+  "version": "0.0.1-SNAPSHOT-0.0.64",
   "vendor": "Mulesoft",
   "category": "COMMUNITY",
   "xmlDsl": {
     "prefix": "github-marina",
     "namespace": "http://www.mulesoft.org/schema/mule/github-marina",
     "schemaLocation": "http://www.mulesoft.org/schema/mule/github-marina/current/mule-github-marina.xsd",
-    "schemaVersion": "0.0.1-SNAPSHOT-0.0.62",
+    "schemaVersion": "0.0.1-SNAPSHOT-0.0.64",
     "xsdFileName": "mule-github-marina.xsd"
   },
   "resources": [],
@@ -269,24 +269,8 @@
           "executionType": "BLOCKING",
           "output": {
             "type": {
-              "format": "json",
-              "type": "Binary",
-              "annotations": {
-                "classInformation": {
-                  "classname": "java.io.InputStream",
-                  "hasDefaultConstructor": true,
-                  "isInterface": false,
-                  "isInstantiable": false,
-                  "isAbstract": true,
-                  "isFinal": false,
-                  "implementedInterfaces": [
-                    "java.io.Closeable"
-                  ],
-                  "parent": "",
-                  "genericTypes": [],
-                  "isMap": false
-                }
-              }
+              "format": "java",
+              "type": "@ref:com.mulesoft.connector.github.api.Domain.IssueAnswer"
             },
             "hasDynamicType": false,
             "description": "",
@@ -319,7 +303,7 @@
           },
           "transactional": false,
           "requiresConnection": true,
-          "supportsStreaming": true,
+          "supportsStreaming": false,
           "notifications": [],
           "nestedComponents": [],
           "errors": [
@@ -396,7 +380,7 @@
                   "allowedStereotypeModels": [],
                   "name": "reponame",
                   "displayModel": {
-                    "displayName": "Reponame"
+                    "displayName": "Repository"
                   },
                   "description": "",
                   "modelProperties": {}
@@ -661,7 +645,7 @@
                     "password": false,
                     "text": false,
                     "query": false,
-                    "order": 9
+                    "order": 8
                   },
                   "allowedStereotypeModels": [
                     {
@@ -676,194 +660,6 @@
                   "name": "config-ref",
                   "description": "The name of the configuration to be used to execute this component",
                   "modelProperties": {}
-                },
-                {
-                  "type": {
-                    "format": "java",
-                    "type": "Union",
-                    "annotations": {
-                      "typeId": "ByteStreamingStrategy"
-                    },
-                    "of": [
-                      {
-                        "type": "Object",
-                        "annotations": {
-                          "typeId": "repeatable-in-memory-stream"
-                        },
-                        "fields": [
-                          {
-                            "key": {
-                              "name": "initialBufferSize"
-                            },
-                            "model": {
-                              "type": "Number",
-                              "annotations": {
-                                "int": {},
-                                "default": "512"
-                              }
-                            },
-                            "annotations": {
-                              "description": {
-                                "value": "This is the amount of memory that will be allocated in order to consume the stream and provide random access to it. If the stream contains more data than can be fit into this buffer, then it will be expanded by according to the bufferSizeIncrement attribute, with an upper limit of maxInMemorySize."
-                              }
-                            }
-                          },
-                          {
-                            "key": {
-                              "name": "bufferSizeIncrement"
-                            },
-                            "model": {
-                              "type": "Number",
-                              "annotations": {
-                                "int": {},
-                                "default": "512"
-                              }
-                            },
-                            "annotations": {
-                              "description": {
-                                "value": "This is by how much will be buffer size by expanded if it exceeds its initial size. Setting a value of zero or lower will mean that the buffer should not expand, meaning that a STREAM_MAXIMUM_SIZE_EXCEEDED error will be raised when the buffer gets full."
-                              }
-                            }
-                          },
-                          {
-                            "key": {
-                              "name": "maxBufferSize"
-                            },
-                            "model": {
-                              "type": "Number",
-                              "annotations": {
-                                "int": {},
-                                "default": "1024"
-                              }
-                            },
-                            "annotations": {
-                              "description": {
-                                "value": "This is the maximum amount of memory that will be used. If more than that is used then a STREAM_MAXIMUM_SIZE_EXCEEDED error will be raised. A value lower or equal to zero means no limit."
-                              }
-                            }
-                          },
-                          {
-                            "key": {
-                              "name": "bufferUnit"
-                            },
-                            "model": {
-                              "type": "String",
-                              "annotations": {
-                                "enum": {
-                                  "type": "[Ljava.lang.String;",
-                                  "values": [
-                                    "BYTE",
-                                    "KB",
-                                    "MB",
-                                    "GB"
-                                  ]
-                                },
-                                "default": "KB"
-                              }
-                            },
-                            "annotations": {
-                              "description": {
-                                "value": "The unit in which all these attributes are expressed"
-                              }
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "type": "Object",
-                        "annotations": {
-                          "typeId": "repeatable-file-store-stream"
-                        },
-                        "fields": [
-                          {
-                            "key": {
-                              "name": "inMemorySize"
-                            },
-                            "model": {
-                              "type": "Number",
-                              "annotations": {
-                                "int": {},
-                                "default": "512"
-                              }
-                            },
-                            "annotations": {
-                              "description": {
-                                "value": "Defines the maximum memory that the stream should use to keep data in memory. If more than that is consumed then it will start to buffer the content on disk."
-                              }
-                            }
-                          },
-                          {
-                            "key": {
-                              "name": "bufferUnit"
-                            },
-                            "model": {
-                              "type": "String",
-                              "annotations": {
-                                "enum": {
-                                  "type": "[Ljava.lang.String;",
-                                  "values": [
-                                    "BYTE",
-                                    "KB",
-                                    "MB",
-                                    "GB"
-                                  ]
-                                },
-                                "default": "KB"
-                              }
-                            },
-                            "annotations": {
-                              "description": {
-                                "value": "The unit in which maxInMemorySize is expressed"
-                              }
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "type": "Object",
-                        "annotations": {
-                          "typeId": "non-repeatable-stream",
-                          "description": {
-                            "value": "This configuration allows the input stream to be read only once. It will not allow to seek randomly which will limit the transformations that DW can perform on this stream. Use this option for use cases which just require moving data around from one system to another to get optimum performance."
-                          }
-                        },
-                        "fields": []
-                      }
-                    ]
-                  },
-                  "hasDynamicType": false,
-                  "required": false,
-                  "isConfigOverride": false,
-                  "isComponentId": false,
-                  "expressionSupport": "NOT_SUPPORTED",
-                  "role": "BEHAVIOUR",
-                  "dslConfiguration": {
-                    "allowsInlineDefinition": true,
-                    "allowsReferences": false,
-                    "allowTopLevelDefinition": false
-                  },
-                  "layoutModel": {
-                    "password": false,
-                    "text": false,
-                    "query": false,
-                    "order": 8,
-                    "tabName": "Advanced"
-                  },
-                  "allowedStereotypeModels": [],
-                  "name": "streamingStrategy",
-                  "description": "Configure if repeatable streams should be used and their behaviour",
-                  "modelProperties": {
-                    "org.mule.runtime.extension.api.property.QNameModelProperty": {
-                      "value": {
-                        "namespaceURI": "http://www.mulesoft.org/schema/mule/core",
-                        "localPart": "abstract-byte-streaming-strategy",
-                        "prefix": "mule"
-                      }
-                    },
-                    "org.mule.runtime.extension.api.property.InfrastructureParameterModelProperty": {
-                      "sequence": 2
-                    }
-                  }
                 }
               ],
               "exclusiveParametersModels": [],
@@ -900,7 +696,7 @@
                     "password": false,
                     "text": false,
                     "query": false,
-                    "order": 10,
+                    "order": 9,
                     "tabName": "Advanced"
                   },
                   "allowedStereotypeModels": [],
@@ -932,7 +728,7 @@
                     "password": false,
                     "text": false,
                     "query": false,
-                    "order": 11,
+                    "order": 10,
                     "tabName": "Advanced"
                   },
                   "allowedStereotypeModels": [],
@@ -1110,7 +906,7 @@
                     "password": false,
                     "text": false,
                     "query": false,
-                    "order": 12,
+                    "order": 11,
                     "tabName": "Advanced"
                   },
                   "allowedStereotypeModels": [],
@@ -1154,8 +950,9 @@
           "output": {
             "type": {
               "format": "json",
-              "type": "Union",
+              "type": "Object",
               "annotations": {
+                "label": "Private User",
                 "classInformation": {
                   "classname": "java.io.InputStream",
                   "hasDefaultConstructor": true,
@@ -1169,1069 +966,547 @@
                   "parent": "",
                   "genericTypes": [],
                   "isMap": false
+                },
+                "description": {
+                  "value": "Private User"
                 }
               },
-              "of": [
+              "open": {
+                "type": "Any"
+              },
+              "fields": [
                 {
-                  "type": "Object",
-                  "annotations": {
-                    "description": {
-                      "value": "Private User"
-                    },
-                    "label": "Private User"
+                  "key": {
+                    "name": "gists_url",
+                    "required": "true"
                   },
-                  "open": {
-                    "type": "Any"
-                  },
-                  "fields": [
-                    {
-                      "key": {
-                        "name": "gists_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "repos_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "two_factor_authentication",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Boolean"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "following_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "twitter_username"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "String"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "bio",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "String"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "created_at",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "login",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "type",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "blog",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "String"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "private_gists",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "total_private_repos",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "subscriptions_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "updated_at",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "site_admin",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Boolean"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "disk_usage",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "collaborators",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "company",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "String"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "owned_private_repos",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "id",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "public_repos",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "gravatar_id",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "String"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "plan"
-                      },
-                      "model": {
-                        "type": "Object",
-                        "open": {
-                          "type": "Any"
-                        },
-                        "fields": [
-                          {
-                            "key": {
-                              "name": "private_repos",
-                              "required": "true"
-                            },
-                            "model": {
-                              "type": "Number",
-                              "annotations": {
-                                "int": {}
-                              }
-                            }
-                          },
-                          {
-                            "key": {
-                              "name": "name",
-                              "required": "true"
-                            },
-                            "model": {
-                              "type": "String"
-                            }
-                          },
-                          {
-                            "key": {
-                              "name": "collaborators",
-                              "required": "true"
-                            },
-                            "model": {
-                              "type": "Number",
-                              "annotations": {
-                                "int": {}
-                              }
-                            }
-                          },
-                          {
-                            "key": {
-                              "name": "space",
-                              "required": "true"
-                            },
-                            "model": {
-                              "type": "Number",
-                              "annotations": {
-                                "int": {}
-                              }
-                            }
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "email",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "String"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "organizations_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "hireable",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "Boolean"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "starred_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "followers_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "public_gists",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "received_events_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "ldap_dn"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "followers",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "avatar_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "events_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "business_plus"
-                      },
-                      "model": {
-                        "type": "Boolean"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "html_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "following",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "name",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "String"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "location",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "String"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "node_id",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "suspended_at"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "String"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                  "model": {
+                    "type": "String"
+                  }
                 },
                 {
-                  "type": "Object",
-                  "annotations": {
-                    "description": {
-                      "value": "Public User"
-                    },
-                    "label": "Public User"
+                  "key": {
+                    "name": "repos_url",
+                    "required": "true"
                   },
-                  "fields": [
-                    {
-                      "key": {
-                        "name": "gists_url",
-                        "required": "true"
-                      },
-                      "model": {
+                  "model": {
+                    "type": "String"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "two_factor_authentication",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Boolean"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "following_url",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "String"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "twitter_username"
+                  },
+                  "model": {
+                    "type": "Union",
+                    "of": [
+                      {
                         "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "repos_url",
-                        "required": "true"
                       },
-                      "model": {
+                      {
+                        "type": "Null"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "key": {
+                    "name": "bio",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Union",
+                    "of": [
+                      {
                         "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "following_url",
-                        "required": "true"
                       },
-                      "model": {
+                      {
+                        "type": "Null"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "key": {
+                    "name": "created_at",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "String"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "login",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "String"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "type",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "String"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "blog",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Union",
+                    "of": [
+                      {
                         "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "twitter_username"
                       },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "String"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
+                      {
+                        "type": "Null"
                       }
-                    },
-                    {
-                      "key": {
-                        "name": "bio",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "String"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "created_at",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "login",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "type",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "blog",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "String"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "private_gists"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "total_private_repos"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "subscriptions_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "updated_at",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "site_admin",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Boolean"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "disk_usage"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "collaborators"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "company",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "String"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "owned_private_repos"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "id",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "public_repos",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "gravatar_id",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "String"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "plan"
-                      },
-                      "model": {
-                        "type": "Object",
-                        "open": {
-                          "type": "Any"
-                        },
-                        "fields": [
-                          {
-                            "key": {
-                              "name": "private_repos",
-                              "required": "true"
-                            },
-                            "model": {
-                              "type": "Number",
-                              "annotations": {
-                                "int": {}
-                              }
-                            }
-                          },
-                          {
-                            "key": {
-                              "name": "name",
-                              "required": "true"
-                            },
-                            "model": {
-                              "type": "String"
-                            }
-                          },
-                          {
-                            "key": {
-                              "name": "collaborators",
-                              "required": "true"
-                            },
-                            "model": {
-                              "type": "Number",
-                              "annotations": {
-                                "int": {}
-                              }
-                            }
-                          },
-                          {
-                            "key": {
-                              "name": "space",
-                              "required": "true"
-                            },
-                            "model": {
-                              "type": "Number",
-                              "annotations": {
-                                "int": {}
-                              }
-                            }
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "email",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "String"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "organizations_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "hireable",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "Boolean"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "starred_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "followers_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "public_gists",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "received_events_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "followers",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "avatar_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "events_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "html_url",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "following",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Number",
-                        "annotations": {
-                          "int": {}
-                        }
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "name",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "String"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "location",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "String"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "node_id",
-                        "required": "true"
-                      },
-                      "model": {
-                        "type": "String"
-                      }
-                    },
-                    {
-                      "key": {
-                        "name": "suspended_at"
-                      },
-                      "model": {
-                        "type": "Union",
-                        "of": [
-                          {
-                            "type": "String"
-                          },
-                          {
-                            "type": "Null"
-                          }
-                        ]
-                      }
+                    ]
+                  }
+                },
+                {
+                  "key": {
+                    "name": "private_gists",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Number",
+                    "annotations": {
+                      "int": {}
                     }
-                  ]
+                  }
+                },
+                {
+                  "key": {
+                    "name": "total_private_repos",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Number",
+                    "annotations": {
+                      "int": {}
+                    }
+                  }
+                },
+                {
+                  "key": {
+                    "name": "subscriptions_url",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "String"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "updated_at",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "String"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "site_admin",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Boolean"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "disk_usage",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Number",
+                    "annotations": {
+                      "int": {}
+                    }
+                  }
+                },
+                {
+                  "key": {
+                    "name": "collaborators",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Number",
+                    "annotations": {
+                      "int": {}
+                    }
+                  }
+                },
+                {
+                  "key": {
+                    "name": "company",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Union",
+                    "of": [
+                      {
+                        "type": "String"
+                      },
+                      {
+                        "type": "Null"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "key": {
+                    "name": "owned_private_repos",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Number",
+                    "annotations": {
+                      "int": {}
+                    }
+                  }
+                },
+                {
+                  "key": {
+                    "name": "id",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Number",
+                    "annotations": {
+                      "int": {}
+                    }
+                  }
+                },
+                {
+                  "key": {
+                    "name": "public_repos",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Number",
+                    "annotations": {
+                      "int": {}
+                    }
+                  }
+                },
+                {
+                  "key": {
+                    "name": "gravatar_id",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Union",
+                    "of": [
+                      {
+                        "type": "String"
+                      },
+                      {
+                        "type": "Null"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "key": {
+                    "name": "plan"
+                  },
+                  "model": {
+                    "type": "Object",
+                    "open": {
+                      "type": "Any"
+                    },
+                    "fields": [
+                      {
+                        "key": {
+                          "name": "private_repos",
+                          "required": "true"
+                        },
+                        "model": {
+                          "type": "Number",
+                          "annotations": {
+                            "int": {}
+                          }
+                        }
+                      },
+                      {
+                        "key": {
+                          "name": "name",
+                          "required": "true"
+                        },
+                        "model": {
+                          "type": "String"
+                        }
+                      },
+                      {
+                        "key": {
+                          "name": "collaborators",
+                          "required": "true"
+                        },
+                        "model": {
+                          "type": "Number",
+                          "annotations": {
+                            "int": {}
+                          }
+                        }
+                      },
+                      {
+                        "key": {
+                          "name": "space",
+                          "required": "true"
+                        },
+                        "model": {
+                          "type": "Number",
+                          "annotations": {
+                            "int": {}
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "key": {
+                    "name": "email",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Union",
+                    "of": [
+                      {
+                        "type": "String"
+                      },
+                      {
+                        "type": "Null"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "key": {
+                    "name": "organizations_url",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "String"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "hireable",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Union",
+                    "of": [
+                      {
+                        "type": "Boolean"
+                      },
+                      {
+                        "type": "Null"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "key": {
+                    "name": "starred_url",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "String"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "followers_url",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "String"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "public_gists",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Number",
+                    "annotations": {
+                      "int": {}
+                    }
+                  }
+                },
+                {
+                  "key": {
+                    "name": "url",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "String"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "received_events_url",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "String"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "ldap_dn"
+                  },
+                  "model": {
+                    "type": "String"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "followers",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Number",
+                    "annotations": {
+                      "int": {}
+                    }
+                  }
+                },
+                {
+                  "key": {
+                    "name": "avatar_url",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "String"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "events_url",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "String"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "business_plus"
+                  },
+                  "model": {
+                    "type": "Boolean"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "html_url",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "String"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "following",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Number",
+                    "annotations": {
+                      "int": {}
+                    }
+                  }
+                },
+                {
+                  "key": {
+                    "name": "name",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Union",
+                    "of": [
+                      {
+                        "type": "String"
+                      },
+                      {
+                        "type": "Null"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "key": {
+                    "name": "location",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "Union",
+                    "of": [
+                      {
+                        "type": "String"
+                      },
+                      {
+                        "type": "Null"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "key": {
+                    "name": "node_id",
+                    "required": "true"
+                  },
+                  "model": {
+                    "type": "String"
+                  }
+                },
+                {
+                  "key": {
+                    "name": "suspended_at"
+                  },
+                  "model": {
+                    "type": "Union",
+                    "of": [
+                      {
+                        "type": "String"
+                      },
+                      {
+                        "type": "Null"
+                      }
+                    ]
+                  }
                 }
               ]
             },
@@ -5337,5 +4612,29 @@
     }
   ],
   "modelProperties": {},
-  "types": []
+  "types": [
+    {
+      "format": "java",
+      "type": "Object",
+      "annotations": {
+        "typeId": "com.mulesoft.connector.github.api.Domain.IssueAnswer",
+        "classInformation": {
+          "classname": "com.mulesoft.connector.github.api.Domain.IssueAnswer",
+          "hasDefaultConstructor": true,
+          "isInterface": false,
+          "isInstantiable": true,
+          "isAbstract": false,
+          "isFinal": false,
+          "implementedInterfaces": [],
+          "parent": "",
+          "genericTypes": [],
+          "isMap": false
+        },
+        "typeAlias": {
+          "value": "IssueAnswer"
+        }
+      },
+      "fields": []
+    }
+  ]
 }
