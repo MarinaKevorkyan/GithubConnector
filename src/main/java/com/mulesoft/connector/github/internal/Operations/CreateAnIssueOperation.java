@@ -1,6 +1,6 @@
 package com.mulesoft.connector.github.internal.Operations;
 
-import com.mulesoft.connector.github.api.Domain.IssueAnswer;
+import com.mulesoft.connector.github.api.Domain.IssueResponse;
 import com.mulesoft.connector.github.internal.Connection.GithubConnection;
 import com.mulesoft.connector.github.internal.Converters.ResultConverter;
 import com.mulesoft.connector.github.internal.Domain.Issue;
@@ -21,14 +21,14 @@ import java.util.concurrent.TimeoutException;
 public class CreateAnIssueOperation {
     private ResultConverter resultConverter = new ResultConverter();
     @MediaType(MediaType.ANY)
-    public Result<IssueAnswer, InputStream> createAnIssue (@Connection GithubConnection connection,
-                                                           @DisplayName("Username") String username,
-                                                           @DisplayName("Repository") String reponame,
-                                                           @DisplayName("Title") String title,
-                                                           @DisplayName("Body") @Optional String body,
-                                                           @DisplayName ("Milestone") @Optional String milestone,
-                                                           @DisplayName ("Labels")  @Optional ArrayList<Object> labels,
-                                                           @DisplayName ("Assignees") @Optional ArrayList<Object> assignees
+    public Result<IssueResponse, InputStream> createAnIssue (@Connection GithubConnection connection,
+                                                             @DisplayName("Username") String username,
+                                                             @DisplayName("Repository") String reponame,
+                                                             @DisplayName("Title") String title,
+                                                             @DisplayName("Body") @Optional String body,
+                                                             @DisplayName ("Milestone") @Optional String milestone,
+                                                             @DisplayName ("Labels")  @Optional ArrayList<Object> labels,
+                                                             @DisplayName ("Assignees") @Optional ArrayList<Object> assignees
 
     ) throws IOException, TimeoutException {
 

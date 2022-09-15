@@ -1,7 +1,7 @@
 package com.mulesoft.connector.github.internal.Converters;
 
 import com.google.gson.Gson;
-import com.mulesoft.connector.github.api.Domain.IssueAnswer;
+import com.mulesoft.connector.github.api.Domain.IssueResponse;
 import com.mulesoft.connector.github.internal.Domain.Issue;
 import org.mule.runtime.api.metadata.MediaType;
 import org.mule.runtime.extension.api.runtime.operation.Result;
@@ -31,10 +31,10 @@ public class ResultConverter {
         return Result.<InputStream, InputStream>builder().output(inputStreamIssue).attributes(attributes).build();
     }
 
-    public Result<IssueAnswer, InputStream> buildResultIssueResponse (InputStream attributes, InputStream content) throws IOException {
+    public Result<IssueResponse, InputStream> buildResultIssueResponse (InputStream attributes, InputStream content) throws IOException {
         if(content == null){
             throw new RuntimeException();
         }
-        return Result.<IssueAnswer, InputStream>builder().output(issueConverter.convertInputStreamToIssue(content)).attributes(attributes).build();
+        return Result.<IssueResponse, InputStream>builder().output(issueConverter.convertInputStreamToIssue(content)).attributes(attributes).build();
     }
 }

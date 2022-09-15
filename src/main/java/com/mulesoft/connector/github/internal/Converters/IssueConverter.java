@@ -2,7 +2,7 @@ package com.mulesoft.connector.github.internal.Converters;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-import com.mulesoft.connector.github.api.Domain.IssueAnswer;
+import com.mulesoft.connector.github.api.Domain.IssueResponse;
 import com.mulesoft.connector.github.internal.Domain.Issue;
 
 import java.io.ByteArrayOutputStream;
@@ -14,7 +14,7 @@ import java.util.List;
 
 public class IssueConverter {
 
-    public IssueAnswer convertInputStreamToIssue (InputStream inputStream) throws IOException {
+    public IssueResponse convertInputStreamToIssue (InputStream inputStream) throws IOException {
         if(inputStream != null){
             Gson gson = new Gson();
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -22,7 +22,7 @@ public class IssueConverter {
                 byteArrayOutputStream.write(data);
             }
             String issueString = byteArrayOutputStream.toString("UTF-8");
-            IssueAnswer issue = gson.fromJson(issueString, IssueAnswer.class);
+            IssueResponse issue = gson.fromJson(issueString, IssueResponse.class);
 
 //            Reader reader = new InputStreamReader(inputStream);
 //            StringBuilder result = new StringBuilder();
