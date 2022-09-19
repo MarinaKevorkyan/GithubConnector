@@ -1,9 +1,9 @@
 package com.mulesoft.connector.github.internal.Sources;
 
+import com.mulesoft.connector.github.api.Domain.IssueList;
 import com.mulesoft.connector.github.internal.Connection.GithubConnection;
 import com.mulesoft.connector.github.internal.Converters.IssueConverter;
 import com.mulesoft.connector.github.internal.Converters.ResultConverter;
-import com.mulesoft.connector.github.internal.Domain.Issue;
 import org.mule.runtime.api.connection.ConnectionProvider;
 import org.mule.runtime.api.exception.MuleException;
 import org.mule.runtime.extension.api.annotation.Alias;
@@ -17,8 +17,6 @@ import org.mule.runtime.extension.api.runtime.source.PollContext;
 import org.mule.runtime.extension.api.runtime.source.PollingSource;
 import org.mule.runtime.extension.api.runtime.source.SourceCallbackContext;
 import org.mule.runtime.http.api.domain.message.response.HttpResponse;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -81,8 +79,8 @@ public class GithubSource extends PollingSource<InputStream, InputStream> {
             return;
         }
         HttpResponse issuesResponse = connection.getService().listRepositoryIssues(owner, repoName, watermarkField);
-        List<Issue> issueList = issueConverter.convertInputStreamToIssues(issuesResponse.getEntity().getContent());
-        for(Issue issue : issueList){
+        List<IssueList> issueList = issueConverter.convertInputStreamToIssues(issuesResponse.getEntity().getContent());
+        for(IssueList issue : issueList){
             if(pollContext.isSourceStopping()){
                 break;
             }
@@ -98,8 +96,8 @@ public class GithubSource extends PollingSource<InputStream, InputStream> {
                 }
                 itemIssue.setResult(result);
                 itemIssue.setId(issue.getUrl()); //for idempotency
-                itemIssue.setWatermark(issue.getCreated_at());
-                watermarkField = issue.getCreated_at();
+                itemIssue.setWatermark(issue.getCreatedAt());
+                watermarkField = issue.getCreatedAt();
             });
 
             if(!status.equals(PollContext.PollItemStatus.ACCEPTED)){

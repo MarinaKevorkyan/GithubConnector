@@ -1,7 +1,7 @@
 package com.mulesoft.connector.github.internal.Client;
 
 import com.google.gson.Gson;
-import com.mulesoft.connector.github.internal.Domain.Issue;
+import com.mulesoft.connector.github.api.Domain.IssueList;
 import org.mule.runtime.http.api.HttpConstants;
 import org.mule.runtime.http.api.HttpHeaders;
 import org.mule.runtime.http.api.client.HttpClient;
@@ -60,32 +60,8 @@ public class HttpClientGithub {
         return new ByteArrayInputStream(gson.toJson(attributes, HashMap.class).getBytes());
     }
 
-        /*public <T> T execute(Result<InputStream, InputStream> response) {
-        try {
-            return response;
-        } catch (MuleRuntimeException e) {
-            throw e;
-        } catch (TimeoutException e) {
-            throw new ModuleException("Request timeout exceeded.", GithubErrorType.TIMEOUT);
-        } catch (ConnectException e) {
-            throw new ModuleException(e.getMessage(), GithubErrorType.INVALID_CONNECTION);
-        } catch (Exception e) {
-            if (ExceptionUtils.containsType(e, UnresolvedAddressException.class)) {
-                throw new ModuleException(e.getMessage(), GithubErrorType.INVALID_CONNECTION);
-            }
-            throw new MuleRuntimeException(e);
-        }
-    }*/
-
-
-
-//    public HttpResponse response(HttpResponse response) {
-//        int statusCodeResponse = response.getStatusCode();
-//        return StatusCodes.manageStatusCodes(statusCodeResponse);
-//    }
-
 //    --------------------------- Create an issue ----------------------
-    public HashMap<String, Object> createBodyIssue(Issue issue) {
+    public HashMap<String, Object> createBodyIssue(IssueList issue) {
         HashMap<String, Object> bodyIssue = new HashMap<>();
         bodyIssue.put("title", issue.getTitle());
         bodyIssue.put("body", issue.getBody());

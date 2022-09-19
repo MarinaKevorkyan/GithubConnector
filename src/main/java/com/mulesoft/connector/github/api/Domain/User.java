@@ -1,44 +1,61 @@
 package com.mulesoft.connector.github.api.Domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class User{
     private String login;
     private int id;
-    private String node_id;
-    private String avatar_url;
-    private String gravatar_id;
+    @JsonProperty("node_id")
+    private String nodeId;
+    @JsonProperty("avatar_url")
+    private String avatarUrl;
+    @JsonProperty("gravatar_id")
+    private String gravatarId;
     private String url;
-    private String html_url;
-    private String followers_url;
-    private String following_url;
-    private String gists_url;
-    private String starred_url;
-    private String subscriptions_url;
-    private String organizations_url;
-    private String repos_url;
-    private String events_url;
-    private String received_events_url;
+    @JsonProperty("html_url")
+    private String htmlUrl;
+    @JsonProperty("followers_url")
+    private String followersUrl;
+    @JsonProperty("following_url")
+    private String followingUrl;
+    @JsonProperty("gists_url")
+    private String gistsUrl;
+    @JsonProperty("starred_url")
+    private String starredUrl;
+    @JsonProperty("subscriptions_url")
+    private String subscriptionsUrl;
+    @JsonProperty("organizations_url")
+    private String organizationsUrl;
+    @JsonProperty("repos_url")
+    private String reposUrl;
+    @JsonProperty("events_url")
+    private String eventsUrl;
+    @JsonProperty("received_events_url")
+    private String receivedEventsUrl;
     private String type;
-    private boolean site_admin;
+    @JsonProperty("site_admin")
+    private boolean siteAdmin;
 
-    public User(String login, int id, String node_id, String avatar_url, String gravatar_id, String url, String html_url, String followers_url, String following_url, String gists_url, String starred_url, String subscriptions_url, String organizations_url, String repos_url, String events_url, String received_events_url, String type, boolean site_admin) {
+    public User(){}
+    public User(String login, int id, String nodeId, String avatarUrl, String gravatarId, String url, String htmlUrl, String followersUrl, String followingUrl, String gistsUrl, String starredUrl, String subscriptionsUrl, String organizationsUrl, String reposUrl, String eventsUrl, String receivedEventsUrl, String type, boolean siteAdmin) {
         this.login = login;
         this.id = id;
-        this.node_id = node_id;
-        this.avatar_url = avatar_url;
-        this.gravatar_id = gravatar_id;
+        this.nodeId = nodeId;
+        this.avatarUrl = avatarUrl;
+        this.gravatarId = gravatarId;
         this.url = url;
-        this.html_url = html_url;
-        this.followers_url = followers_url;
-        this.following_url = following_url;
-        this.gists_url = gists_url;
-        this.starred_url = starred_url;
-        this.subscriptions_url = subscriptions_url;
-        this.organizations_url = organizations_url;
-        this.repos_url = repos_url;
-        this.events_url = events_url;
-        this.received_events_url = received_events_url;
+        this.htmlUrl = htmlUrl;
+        this.followersUrl = followersUrl;
+        this.followingUrl = followingUrl;
+        this.gistsUrl = gistsUrl;
+        this.starredUrl = starredUrl;
+        this.subscriptionsUrl = subscriptionsUrl;
+        this.organizationsUrl = organizationsUrl;
+        this.reposUrl = reposUrl;
+        this.eventsUrl = eventsUrl;
+        this.receivedEventsUrl = receivedEventsUrl;
         this.type = type;
-        this.site_admin = site_admin;
+        this.siteAdmin = siteAdmin;
     }
 
     public String getLogin() {
@@ -49,67 +66,67 @@ public class User{
         return id;
     }
 
-    public String getNode_id() {
-        return node_id;
+    public String getNodeId() {
+        return nodeId;
     }
 
-    public String getAvatar_url() {
-        return avatar_url;
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
-    public String getGravatar_id() {
-        return gravatar_id;
+    public String getGravatarId() {
+        return gravatarId;
     }
 
     public String getUrl() {
         return url;
     }
 
-    public String getHtml_url() {
-        return html_url;
+    public String getHtmlUrl() {
+        return htmlUrl;
     }
 
-    public String getFollowers_url() {
-        return followers_url;
+    public String getFollowersUrl() {
+        return followersUrl;
     }
 
-    public String getFollowing_url() {
-        return following_url;
+    public String getFollowingUrl() {
+        return followingUrl;
     }
 
-    public String getGists_url() {
-        return gists_url;
+    public String getGistsUrl() {
+        return gistsUrl;
     }
 
-    public String getStarred_url() {
-        return starred_url;
+    public String getStarredUrl() {
+        return starredUrl;
     }
 
-    public String getSubscriptions_url() {
-        return subscriptions_url;
+    public String getSubscriptionsUrl() {
+        return subscriptionsUrl;
     }
 
-    public String getOrganizations_url() {
-        return organizations_url;
+    public String getOrganizationsUrl() {
+        return organizationsUrl;
     }
 
-    public String getRepos_url() {
-        return repos_url;
+    public String getReposUrl() {
+        return reposUrl;
     }
 
-    public String getEvents_url() {
-        return events_url;
+    public String getEventsUrl() {
+        return eventsUrl;
     }
 
-    public String getReceived_events_url() {
-        return received_events_url;
+    public String getReceivedEventsUrl() {
+        return receivedEventsUrl;
     }
 
     public String getType() {
         return type;
     }
 
-    public boolean isSite_admin() {
-        return site_admin;
+    public boolean isSiteAdmin() {
+        return siteAdmin;
     }
 }

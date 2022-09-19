@@ -1,9 +1,11 @@
 package com.mulesoft.connector.github.internal.Converters;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import com.mulesoft.connector.github.api.Domain.IssueList;
 import com.mulesoft.connector.github.api.Domain.IssueResponse;
-import com.mulesoft.connector.github.internal.Domain.Issue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -16,22 +18,14 @@ public class IssueConverter {
 
     public IssueResponse convertInputStreamToIssue (InputStream inputStream) throws IOException {
         if(inputStream != null){
-            Gson gson = new Gson();
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             for(int data = inputStream.read(); data != -1; data = inputStream.read()){
                 byteArrayOutputStream.write(data);
             }
             String issueString = byteArrayOutputStream.toString("UTF-8");
-            IssueResponse issue = gson.fromJson(issueString, IssueResponse.class);
-
-//            Reader reader = new InputStreamReader(inputStream);
-//            StringBuilder result = new StringBuilder();
-//
-//            for (int data = reader.read(); data != -1; data = reader.read()) {
-//                result.append((char)data);
-//            }
-//
-//            IssueAnswer issue = gson.fromJson(result.toString(), IssueAnswer.class);
+            IssueResponse issue = objectMapper.readValue(issueString, IssueResponse.class);
             return issue;
         }
         else{
@@ -39,14 +33,14 @@ public class IssueConverter {
         }
     }
 
-    public List<Issue> convertInputStreamToIssues (InputStream inputStream) throws IOException {
+    public List<IssueList> convertInputStreamToIssues (InputStream inputStream) throws IOException {
         if(inputStream != null){
             Gson gson = new Gson();
             JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
-            List<Issue> issues = new ArrayList<>();
+            List<IssueList> issues = new ArrayList<>();
             jsonReader.beginArray();
             while(jsonReader.hasNext()){
-                Issue issue = gson.fromJson(jsonReader, Issue.class);
+                IssueList issue = gson.fromJson(jsonReader, IssueList.class);
                 issues.add(issue);
             }
             jsonReader.endArray();

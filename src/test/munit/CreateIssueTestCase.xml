@@ -21,7 +21,7 @@
 		<munit:validation >
 			<munit-tools:assert-equals doc:name="Assert equals title" doc:id="5e7e730f-cfee-4f6f-a097-467276faa168" actual="#[payload.title]" expected="#[vars.title]"/>
 			<munit-tools:assert-equals doc:name="Assert equals body" doc:id="22e72ab0-2f41-4947-aff8-696dd664e7da" actual="#[payload.body]" expected="#[vars.body]" />
-			<munit-tools:assert-equals doc:name="Assert equals repo url" doc:id="4b8af250-7f06-4072-9572-b25269f4fe51" actual="#[payload.repository_url]" expected="https://api.github.com/repos/MarinaKevorkyan/GithubConnector" />
+<!--			<munit-tools:assert-equals doc:name="Assert equals repo url" doc:id="4b8af250-7f06-4072-9572-b25269f4fe51" actual="#[payload.repositoryUrl]" expected="https://api.github.com/repos/MarinaKevorkyan/GithubConnector" />-->
 			<munit-tools:assert-equals doc:name="Assert equals username" doc:id="67ab46c2-c6fc-4b7f-836e-ba69f3f41ec4" actual="#[payload.user.login]" expected="#[vars.username]" />
 			<munit-tools:assert-equals doc:name="Assert equals id user" doc:id="b6c2a67e-acbb-4b51-87fc-e2ec37589334" actual="#[payload.user.id]" expected="#[106099659]" />
 		</munit:validation>

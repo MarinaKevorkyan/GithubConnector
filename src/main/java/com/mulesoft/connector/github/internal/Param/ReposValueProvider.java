@@ -5,7 +5,7 @@ import org.mule.runtime.extension.api.annotation.metadata.MetadataKeyPart;
 import org.mule.runtime.extension.api.annotation.param.Parameter;
 import org.mule.runtime.extension.api.values.ValueProvider;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class ReposValueProvider implements ValueProvider {
@@ -16,13 +16,13 @@ public class ReposValueProvider implements ValueProvider {
 
     @Parameter
     @MetadataKeyPart(order = 2)
-    private ArrayList<String> userRepos;
+    private List<String> userRepos;
 
     public String getUsername() {
         return username;
     }
 
-    public ArrayList<String> getUserRepos() {
+    public List<String> getUserRepos() {
         return userRepos;
     }
 

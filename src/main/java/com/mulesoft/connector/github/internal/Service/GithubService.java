@@ -1,7 +1,7 @@
 package com.mulesoft.connector.github.internal.Service;
 
+import com.mulesoft.connector.github.api.Domain.IssueList;
 import com.mulesoft.connector.github.internal.Client.HttpClientGithub;
-import com.mulesoft.connector.github.internal.Domain.Issue;
 import org.mule.runtime.http.api.HttpConstants;
 import org.mule.runtime.http.api.domain.message.request.HttpRequest;
 import org.mule.runtime.http.api.domain.message.request.HttpRequestBuilder;
@@ -30,7 +30,7 @@ public class GithubService {
         return httpClientGithub.send(httpRequest, TIMEOUT, TimeUnit.SECONDS);
     }
 
-    public HttpResponse createAnIssue(String username, String reponame, Issue issue) throws IOException, TimeoutException {
+    public HttpResponse createAnIssue(String username, String reponame, IssueList issue) throws IOException, TimeoutException {
         HashMap<String, Object> bodyIssue = httpClientGithub.createBodyIssue(issue);
         HttpRequest httpRequest = httpClientGithub.request(HttpConstants.Method.POST, httpClientGithub.setUri("repos/" + username + "/" + reponame + "/issues"), bodyIssue).build();
         return httpClientGithub.send(httpRequest, TIMEOUT, TimeUnit.SECONDS);
