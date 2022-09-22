@@ -71,7 +71,7 @@ public class GithubSource extends PollingSource<InputStream, InputStream> {
     @Override
     public void onRejectedItem(Result<InputStream, InputStream> result, SourceCallbackContext sourceCallbackContext) {
 //        LOGGER.debug("Issue: " + result.getOutput() + "has been rejected");
-        System.out.println("Issue: " + " has been rejected");
+//        System.out.println("Issue: " + " has been rejected");
     }
 
     public void pollIssue(PollContext<InputStream, InputStream> pollContext, String owner, String repoName) throws IOException, TimeoutException {
