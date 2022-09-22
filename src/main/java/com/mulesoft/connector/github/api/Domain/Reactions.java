@@ -1,10 +1,11 @@
-package com.mulesoft.connector.github.internal.Domain;
+package com.mulesoft.connector.github.api.Domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Reactions{
     private String url;
-    private int total_count;
+    @JsonProperty("total_count")
+    private int totalCount;
     @JsonProperty("+1")
     private int plusOne;
     @JsonProperty("-1")
@@ -16,9 +17,10 @@ public class Reactions{
     private int rocket;
     private int eyes;
 
+    public Reactions(){}
     public Reactions(String url, int total_count, int plusOne, int minusOne, int laugh, int hooray, int confused, int heart, int rocket, int eyes) {
         this.url = url;
-        this.total_count = total_count;
+        this.totalCount = total_count;
         this.plusOne = plusOne;
         this.minusOne = minusOne;
         this.laugh = laugh;
@@ -34,7 +36,7 @@ public class Reactions{
     }
 
     public int getTotal_count() {
-        return total_count;
+        return totalCount;
     }
 
     public int getPlusOne() {
